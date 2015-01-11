@@ -1,0 +1,351 @@
+/* ***************************************************************** 
+ *  Theme:    Travel Sales
+ *  Author:   Alexander Preidler
+ *  Author:   Maria Grandl
+ *  Author:   Tobias Wolf
+ *  Author:   Katharina Hohla
+ *  Author:   Andreas Schuch
+ *  Author:   Michael Strasser
+ *  ***************************************************************** */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* ************************************
+ *
+ * @Section: Global
+ *
+************************************* */
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background-color: #92c0e4;
+  font-family: "Times New Roman", Verdana;
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 20px;
+  height:100%;
+  margin:0;
+  padding:0;
+  width:100%;
+}
+
+img {
+  border: 0;
+}
+
+ul {
+  list-style-type: none;
+}
+
+label {
+  display: block;
+  text-decoration: underline;
+}
+
+input[type=text], input[type=password] {
+  font-size: 20px;
+  height: 28px;
+  width: 85%;
+  border: none; 
+  border-bottom: 2px solid #000000;
+  margin-bottom: 10px;
+}
+
+input[type=submit] {
+  border: 0;
+  background: transparent;
+}
+
+#wrapper {
+  width: 960px;
+  height: 540px;
+  background: url("../img/wrapper_bg.jpg") no-repeat;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ************************************
+ *
+ * @Section: Header
+ *
+************************************* */
+
+header {
+  height: 110px;
+  background: url("../img/header_bg.png") no-repeat;
+  overflow: auto;
+}
+
+#logo {
+  float: left;
+  width: 376px;
+  margin-top: 34px;
+  margin-left: 25px;
+}
+
+nav {
+  float: right;
+  margin-right: 30px;
+}
+
+nav  li {
+  float: left;
+}
+
+/* ************************************
+ *
+ * @Section: Login
+ *
+************************************* */
+
+#login {
+  position: relative;
+  z-index: 2;
+  width: 411px;
+  margin-top: 20px;
+  height: 252px;
+  padding: 30px 40px 30px 40px;
+  background: url("../img/login_bg.png") no-repeat;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#login input[type=submit] {
+  margin-top: 3px;
+  width: 181px;
+  margin-left: 27%;
+  cursor: pointer;
+  height: 46px;
+  background: url("../img/login_btn.png") no-repeat;
+}
+
+#login input[type=text], #login input[type=password] {
+  background-color: #56adf1;
+}
+
+#login a {
+  margin-top: 48px;
+  display: block;
+  text-align: center;
+}
+
+#register {
+  position: relative;
+  z-index: 1;
+  width: 411px;
+  height: 355px;
+  padding: 80px 40px 30px 40px;
+  background: url("../img/register_bg.png") no-repeat;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#register input[type=submit] {
+  margin-top: 3px;
+  width: 249px;
+  margin-left: 22%;
+  cursor: pointer;
+  height: 46px;
+  background: url("../img/register_btn.png") no-repeat;
+}
+
+#register input[type=text], #register input[type=password] {
+  background-color: #f76c6c;
+}
+
+#register a {
+  margin-top: -50px;
+  margin-bottom: 23px;
+  display: block;
+  text-align: center;
+}
+
+/* ************************************
+ *
+ * @Section: Edit Subgame
+ *
+************************************* */
+
+#content.editSubgame {
+  position: relative;
+  top: -35px;
+}
+
+.editSubgame aside {
+  width: 232px;
+  height: 340px;
+  padding-left: 30px;
+  padding-top: 30px;
+  float: right;
+  background: url("../img/vertical_shadow.png") no-repeat;
+}
+
+#coordinates {
+  float: left;
+  height: 370px;
+}
+
+#backgroundImages {
+  position: relative;
+  clear: both;
+  height: 55px;
+  width: 960px;
+  padding-top: 35px;
+  background: url("../img/horizontal_shadow.png") no-repeat;
+}
+
+#backgroundImages span {
+  position: absolute;
+}
+
+.arrowLeft {
+  left: 10px;
+}
+
+.arrowRight {
+  right: 10px;
+}
+
+#backgroundImages ul {
+  margin-left: 90px;
+}
+
+#backgroundImages ul li {
+  float: left;
+  margin-right: 20px;
+}
+
+
+/* ************************************
+ *
+ * @Section: Evaluate
+ *
+************************************* */
+
+#content.evaluate {
+  position: relative;
+  top: -35px;
+}
+
+.evaluate aside {
+  width: 190px;
+  height: 340px;
+  padding-left: 30px;
+  padding-top: 30px;
+  float: left;
+  font-size: 13px;
+}
+
+.evaluate aside ul {
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+#results {
+  width: 488px;
+  padding: 30px 40px 30px 40px;
+  margin-top: 30px;
+  height: 240px;
+  float: left;
+  background: url("../img/results_bg.png") no-repeat;
+}
+
+#results h2 {
+  text-align: center;
+  margin-bottom: 10px;
+} 
+
+#results p {
+  margin-top: 20px;
+} 
+
+.continueBtn {
+  margin-top: 75px;
+  margin-left: 300px;
+  display: block;
+}
+
+#rate{
+  position: relative;
+  clear: both;
+  height: 55px;
+  width: 960px;
+  padding-top: 35px;
+  background: url("../img/horizontal_shadow.png") no-repeat;
+}
+
+#rate ul {
+  margin-left: 150px;
+  margin-right: 70px;
+}
+
+.average {
+  position: relative;
+  left: 90px; 
+}
+
+#rate ul li:first-child {
+  margin-top: 14px;
+  font-size: 16px;
+}
+
+#rate ul li {
+  float: left;
+  margin-right: 10px;
+}
+
+/* ************************************
+ *
+ * @Section: Show Games Levels and Subgames
+ *
+************************************* */
+
+.showGames {
+  height: 430px;
+  overflow: auto;
+}
+
+.showGames h2 {
+  font-size: 18px;
+  margin-bottom: -5px;
+}
+
+.showGames p{
+  font-size: 12px;
+  margin-top: -15px;
+}
+
+.showGames ul {
+  clear: both;
+}
+
+.showGames span.first {
+  margin-left: 170px;
+}
+
+span a {
+  text-decoration: none;
+}
+
+.showGames ul.config {
+  margin-left: 300px;
+}
+
+.showGames ul li {
+  float: left;
+  margin-left: 30px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+
+
+
+
+

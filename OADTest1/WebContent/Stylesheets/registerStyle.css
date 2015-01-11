@@ -1,0 +1,9 @@
+body {
+	background-color: #aefeae;
+}
+
+.errorMessage{
+	font-size: 150%;
+	color: red;
+	font-weight: bold;
+}
