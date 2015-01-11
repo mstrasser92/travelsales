@@ -58,7 +58,7 @@
           <label>E-Mail</label>
           <input name="mail" type="text" maxlength="100" />
         </p>
-        <input type="submit" value="asdfasdf222">
+        <input type="submit" value="">
       </form>
     </div>
   </div>

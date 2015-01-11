@@ -30,7 +30,7 @@
       </nav>
     </header>
     <div id="content">
-		<p> In order to use TravelSales, you must <a href="Login">login</a>. <br>
+		<p> In order to use TravelSales, you must ^dddd<a href="Login">login</a>. <br>
 		New user? Please register <a href="Register">here</a>!
 		</p>
 		
