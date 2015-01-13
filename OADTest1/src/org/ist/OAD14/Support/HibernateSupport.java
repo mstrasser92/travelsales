@@ -17,6 +17,7 @@ import org.ist.OAD14.General.Application;
 import org.ist.OAD14.General.Comment;
 import org.ist.OAD14.User.CreatorUser;
 import org.ist.OAD14.User.User;
+import org.ist.OAD14.Game.*;
 
 /**
  * This Class handles everything for communicating with the database
@@ -48,6 +49,7 @@ public class HibernateSupport {
 		configuration.addAnnotatedClass(Comment.class);
 		configuration.addAnnotatedClass(CreatorUser.class);
 		configuration.addAnnotatedClass(Application.class);
+		configuration.addAnnotatedClass(Node.class);
 
 		
 		configuration.configure(configFile);

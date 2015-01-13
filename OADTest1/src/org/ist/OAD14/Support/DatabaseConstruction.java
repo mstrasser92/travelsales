@@ -7,6 +7,8 @@ import org.ist.OAD14.General.Comment;
 import org.ist.OAD14.User.CreatorUser;
 import org.ist.OAD14.User.User;
 
+import org.ist.OAD14.Game.*;
+
 /**
  * 
  * @author Stettinger
@@ -27,6 +29,7 @@ public class DatabaseConstruction {
 		configuration.addAnnotatedClass(Comment.class);
 		configuration.addAnnotatedClass(CreatorUser.class);
 		configuration.addAnnotatedClass(Application.class);
+		configuration.addAnnotatedClass(Node.class);
 		
 		configuration.configure("hibernate.cfg.xml");
 
