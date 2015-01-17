@@ -11,13 +11,25 @@
 
   <link rel="stylesheet" type="text/css" href="Stylesheets/layout.css" />
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  
+  <script src="contextMenu.js"></script>
   <title>Show Games</title>
   <!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
 </head>
 <body>
+
+<div id="menu">
+	<table cellpadding='5' cellspacing='0' width='122' height='183' style='border-style:outset;border-width:1;border-color:#3a6c96;background-color:#4682B4'>
+		<tr><td><a class='menu' href='javascript:history.back()'>&nbsp;Zur&uuml;ck</a></td></tr>
+		<tr><td><a class='menu' href='javascript:history.forward()'>&nbsp;Vorw&auml;rts</a></td></tr>
+		<tr><td><hr class='menu'><a class='menu' href='javascript:location.reload()'>Aktualisieren</a></td></tr>
+		<tr><td><a class='menu' href='javascript:viewSource()'>Quelltext</a></td></tr>
+		<tr><td><a class='menu' href='javascript:print()'>&nbsp;Drucken</a></td></tr>
+		<tr><td><hr class='menu'><a class='menu' href='javascript:openFrameInNewWindow()'>&nbsp;Neues&nbsp;Fenster</a></td></tr>
+	</table>
+</div>
+
   <div id="wrapper">
     <header>
       <a href="index.jsp" title="Travel Sales">
