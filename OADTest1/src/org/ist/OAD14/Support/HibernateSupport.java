@@ -40,7 +40,7 @@ public class HibernateSupport {
 	}
 	
 	private static void init() {
-		File configFile = new File("C:/xampp/tomcat/webapps/OADTest1/WEB-INF/classes/hibernate.cfg.xml");
+		File configFile = new File("C:/xampp/tomcat/webapps/OADTest1/Webcontent/WEB-INF/classes/hibernate.cfg.xml");
 
 		Configuration configuration = new Configuration();
 		

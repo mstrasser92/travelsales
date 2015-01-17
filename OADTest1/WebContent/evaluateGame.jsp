@@ -16,9 +16,9 @@
 <body>
 <div id="notifyAdmin" class="overlay">
 	<p>Notify Administrator about:</p>
-	<textarea name="message" rows="10" cols="60" style="resize: none;">Your message...</textarea>
+	<textarea id="reportText" name="message" rows="10" cols="60" style="resize: none;">Your message...</textarea>
 	<br>
-    <a href="javascript:void(0)" onclick="document.getElementById('notifyAdmin').style.display = 'none';">
+    <a href="javascript:void(0)" onclick="document.getElementById('notifyAdmin').style.display = 'none'; document.getElementById('reportText').value = 'Your message...';">
     	<img style="margin-top: 10px; margin-left: 10px" src="img/send_btn.png" alt="Send" height="29" width="171"/></a>
     	
     <a href="javascript:void(0)" onclick="document.getElementById('notifyAdmin').style.display = 'none';">
