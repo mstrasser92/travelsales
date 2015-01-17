@@ -25,9 +25,29 @@
 		<tr><td><a class='menu' href='javascript:history.forward()'>&nbsp;Vorw&auml;rts</a></td></tr>
 		<tr><td><hr class='menu'><a class='menu' href='javascript:location.reload()'>Aktualisieren</a></td></tr>
 		<tr><td><a class='menu' href='javascript:viewSource()'>Quelltext</a></td></tr>
-		<tr><td><a class='menu' href='javascript:print()'>&nbsp;Drucken</a></td></tr>
-		<tr><td><hr class='menu'><a class='menu' href='javascript:openFrameInNewWindow()'>&nbsp;Neues&nbsp;Fenster</a></td></tr>
+		<tr><td><a class="menu" href="javascript:void(0)" onclick="document.getElementById('notifyAdmin').style.display = 'inline';">Notify Admin</a></td></tr>
+		<tr><td><hr class='menu'><a class="menu" href="javascript:void(0)" onclick="document.getElementById('giveFeedback').style.display = 'inline';">Give Feedback</a></td></tr>
 	</table>
+</div>
+
+<div id="notifyAdmin" class="overlay">
+	<p>Notify Administrator about:</p>
+	<textarea name="message" rows="10" cols="60" style="resize: none;">Your message...</textarea>
+	<br>
+	<input type="button" name="send" value="Send"
+      onclick="document.getElementById('notifyAdmin').style.display = 'none';">
+    <input type="button" name="cancel" value="Cancel"
+      onclick="document.getElementById('notifyAdmin').style.display = 'none';">
+</div>
+
+<div id="giveFeedback" class="overlay">
+	<p>Give your Feedback:</p>
+	<textarea name="message" rows="10" cols="60" style="resize: none;">Your Feedback...</textarea>
+	<br>
+	<input type="button" name="send" value="Send"
+      onclick="document.getElementById('giveFeedback').style.display = 'none';">
+    <input type="button" name="cancel" value="Cancel"
+      onclick="document.getElementById('giveFeedback').style.display = 'none';">
 </div>
 
   <div id="wrapper">

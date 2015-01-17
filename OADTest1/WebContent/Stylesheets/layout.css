@@ -108,6 +108,20 @@ div#menu
 	z-index:100;
 }
 
+div.overlay
+{
+  	background: url("../img/results_bg.png") no-repeat;
+  	display: none;
+  	padding: 25px;
+  	height: 301px;
+  	width: 569px;
+  	position: fixed;
+  	top: 50%;
+  	left: 50%;
+  	transform: translate(-50%, -50%);
+	z-index:100;
+}
+
 /* ************************************
  *
  * @Section: Header

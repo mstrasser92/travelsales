@@ -14,6 +14,16 @@
   <![endif]-->
 </head>
 <body>
+<div id="notifyAdmin" class="overlay">
+	<p>Notify Administrator about:</p>
+	<textarea name="message" rows="10" cols="60" style="resize: none;">Your message...</textarea>
+	<br>
+	<input type="button" name="send" value="Send"
+      onclick="document.getElementById('notifyAdmin').style.display = 'none';">
+    <input type="button" name="cancel" value="Cancel"
+      onclick="document.getElementById('notifyAdmin').style.display = 'none';">
+</div>
+
   <div id="wrapper">
     <header>
       <a href="index.jsp" title="Travel Sales">
