@@ -34,10 +34,11 @@
 	<p>Notify Administrator about:</p>
 	<textarea name="message" rows="10" cols="60" style="resize: none;">Your message...</textarea>
 	<br>
-	<input type="button" name="send" value="Send"
-      onclick="document.getElementById('notifyAdmin').style.display = 'none';">
-    <input type="button" name="cancel" value="Cancel"
-      onclick="document.getElementById('notifyAdmin').style.display = 'none';">
+    <a href="javascript:void(0)" onclick="document.getElementById('notifyAdmin').style.display = 'none';">
+    	<img style="margin-top: 10px; margin-left: 10px" src="img/send_btn.png" alt="Send" height="29" width="171"/></a>
+    	
+    <a href="javascript:void(0)" onclick="document.getElementById('notifyAdmin').style.display = 'none';">
+		<img style="margin-top: 10px; margin-left: 50px;" src="img/back_btn_small.png" alt="Back" height="29" width="171"/></a>
 </div>
 
 <div id="giveFeedback" class="overlay">

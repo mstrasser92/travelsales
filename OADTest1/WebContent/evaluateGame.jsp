@@ -18,10 +18,11 @@
 	<p>Notify Administrator about:</p>
 	<textarea name="message" rows="10" cols="60" style="resize: none;">Your message...</textarea>
 	<br>
-	<input type="button" name="send" value="Send"
-      onclick="document.getElementById('notifyAdmin').style.display = 'none';">
-    <input type="button" name="cancel" value="Cancel"
-      onclick="document.getElementById('notifyAdmin').style.display = 'none';">
+    <a href="javascript:void(0)" onclick="document.getElementById('notifyAdmin').style.display = 'none';">
+    	<img style="margin-top: 10px; margin-left: 10px" src="img/send_btn.png" alt="Send" height="29" width="171"/></a>
+    	
+    <a href="javascript:void(0)" onclick="document.getElementById('notifyAdmin').style.display = 'none';">
+		<img style="margin-top: 10px; margin-left: 50px;" src="img/back_btn_small.png" alt="Back" height="29" width="171"/></a>
 </div>
 
   <div id="wrapper">
@@ -90,44 +91,57 @@
           <img src="img/continue_btn.png" alt="continue" />
         </a>
       </div>
-      <div id="rate">
       
-        <ul>
-          <li>
-             Evaluate: 
-          </li>
-          <li>
-            <a class="star" href="#" title="1">
-              <img src="img/star_empty.png" alt="1" />
-            </a>
-          </li>
-          <li>
-            <a class="star" href="#" title="2">
-              <img src="img/star_empty.png" alt="2" />
-            </a>
-          </li>
-          <li>
-            <a class="star" href="#" title="3">
-              <img src="img/star_empty.png" alt="3"/>
-            </a>
-          </li>
-          <li>
-            <a class="star" href="#" title="4">
-              <img src="img/star_empty.png" alt="4" />
-            </a>
-          </li>
-          <li>
-            <a class="star" href="#" title="5">
-              <img src="img/star_empty.png" alt="5" />
-            </a>
-          </li>
-        </ul>
-        
-        <ul class="average">
-          <li>
-             Average: <b>4</b>
-          </li>
-        </ul>
+
+      
+      <div id="rate">
+      	<table>
+      	 <tr>
+     	   <td>
+      		<a href="javascript:void(0)" onclick="document.getElementById('notifyAdmin').style.display = 'inline';">
+			<img style="margin-left: 20px;" src="img/report_btn.png" alt="Back" height="28" width="128"/></a>
+      	  </td>
+      	  <td>
+	        <ul>
+	          <li>
+	             Evaluate: 
+	          </li>
+	          <li>
+	            <a class="star" href="#" title="1">
+	              <img src="img/star_empty.png" alt="1" />
+	            </a>
+	          </li>
+	          <li>
+	            <a class="star" href="#" title="2">
+	              <img src="img/star_empty.png" alt="2" />
+	            </a>
+	          </li>
+	          <li>
+	            <a class="star" href="#" title="3">
+	              <img src="img/star_empty.png" alt="3"/>
+	            </a>
+	          </li>
+	          <li>
+	            <a class="star" href="#" title="4">
+	              <img src="img/star_empty.png" alt="4" />
+	            </a>
+	          </li>
+	          <li>
+	            <a class="star" href="#" title="5">
+	              <img src="img/star_empty.png" alt="5" />
+	            </a>
+	          </li>
+	        </ul>
+	        </td>
+	        <td>
+	        <ul class="average">
+	          <li>
+	             Average: <b>4</b>
+	          </li>
+	      	</ul>
+		    </td>
+          </tr>
+        </table>
       </div>
     </div>
     <footer>

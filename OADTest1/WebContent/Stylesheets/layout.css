@@ -110,9 +110,10 @@ div#menu
 
 div.overlay
 {
-  	background: url("../img/results_bg.png") no-repeat;
+  	background: url("../img/preferences_field.png") no-repeat;
+  	background-size: 569px 300px;
   	display: none;
-  	padding: 25px;
+  	padding: 35px;
   	height: 301px;
   	width: 569px;
   	position: fixed;
@@ -323,6 +324,7 @@ nav  li {
   display: block;
 }
 
+
 #rate{
   position: relative;
   clear: both;
@@ -333,13 +335,13 @@ nav  li {
 }
 
 #rate ul {
-  margin-left: 150px;
-  margin-right: 70px;
+  margin-left: 40px;
+  margin-right: 0px;
 }
 
 .average {
   position: relative;
-  left: 90px; 
+  left: 70px; 
 }
 
 #rate ul li:first-child {
