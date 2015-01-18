@@ -3,6 +3,7 @@
     
 <%
  String errorMessage = (String)request.getAttribute("errorMessage");
+ String id = (String)request.getParameter("id");
 %>-->
 <!DOCTYPE html>
 <html>
@@ -90,7 +91,7 @@
         </li>
         <li>
           <h2>Game 1</h2>
-          <a href="game1.jsp" title="Add Game">
+          <a href="game1.jsp?id=<%= id %>" title="Add Game">
             <img src="img/game_btn.png" alt="Game" />
           </a>
           <p>From username</p>

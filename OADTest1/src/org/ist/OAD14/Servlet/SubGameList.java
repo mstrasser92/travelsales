@@ -1,11 +1,15 @@
 package org.ist.OAD14.Servlet;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.ist.OAD14.Support.HibernateSupport;
+import org.ist.OAD14.User.User;
 
 /**
  * Servlet implementation class SubGameList
@@ -27,7 +31,18 @@ public class SubGameList extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("SubGameList entered");
-		request.getRequestDispatcher("SubGameList.jsp").include(request, response);
+		String userId = request.getParameter("id");
+
+		User user = HibernateSupport.readOneObjectByID(User.class, Integer.parseInt(userId));
+		
+		if(user != null){
+			request.setAttribute("user", user);
+			request.getRequestDispatcher("SubgameList.jsp").include(request, response);
+			return;
+		} else {
+			request.getRequestDispatcher("index.jsp").include(request, response);
+			return;
+		}
 	}
 
 	/**

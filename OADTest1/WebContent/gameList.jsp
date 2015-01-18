@@ -35,16 +35,6 @@
 	</table>
 </div>
 
-<div id="notifyAdmin" class="overlay">
-	<p>Notify Administrator about:</p>
-	<textarea name="message" rows="10" cols="60" style="resize: none;">Your message...</textarea>
-	<br>
-    <a href="javascript:void(0)" onclick="document.getElementById('notifyAdmin').style.display = 'none';">
-    	<img style="margin-top: 10px; margin-left: 10px" src="img/send_btn.png" alt="Send" height="29" width="171"/></a>
-    	
-    <a href="javascript:void(0)" onclick="document.getElementById('notifyAdmin').style.display = 'none';">
-		<img style="margin-top: 10px; margin-left: 50px;" src="img/back_btn_small.png" alt="Back" height="29" width="171"/></a>
-</div>
 
 <div id="giveFeedback" class="overlay">
 	<p>Give your Feedback:</p>
@@ -109,7 +99,7 @@
         </li>
         <li>
           <h2>Game 1</h2>
-          <a href="subGameList.jsp" title="Add Game">
+          <a href="subGameList.jsp?id=<%= id %>" title="Add Game">
             <img src="img/game_btn.png" alt="Game" />
           </a>
           <p>From username</p>

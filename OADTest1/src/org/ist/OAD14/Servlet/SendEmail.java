@@ -101,6 +101,24 @@ public class SendEmail extends HttpServlet {
 				System.out.println("Got the message set up!");
 				response.sendRedirect("GameList?id="+ this.getUserId()+"&feedbacksend=true");
 			}
+		} else if(action.equals("notify")) {
+			String id = request.getParameter("id");
+			System.out.println("Got to feedback, userid: " + id);
+			this.userId = id;
+			if(this.userId != null)
+			{
+				CreatorUser user = HibernateSupport.readOneObjectByID(CreatorUser.class, Integer.parseInt(id));
+				String userName = user.getUsername();
+				String userMail = user.getMailAddress();
+				subject = "Improper Content reported from " + userName;
+				message = "The following User reported improper Content: " + userName;
+				message += " \n with E-Mail: " + userMail;
+				message += " \n in Game: " + request.getParameter("game");
+				message += " \n This is the additional Message: \n";
+				message += request.getParameter("message");
+				System.out.println("Got the message set up!");
+				response.sendRedirect("evaluateGame.jsp?id="+ this.getUserId()+"&notified=true&game="+request.getParameter("game"));
+			}
 		} else {
 			response.sendRedirect("Login");
 		}
@@ -133,35 +151,6 @@ public class SendEmail extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String action = request.getParameter("action");
-		String username = request.getParameter("username");
 		
-		System.out.println("Send button clicked:" + action);
-		System.out.println("Username is:" + username);
-		
-//		if(action == "pwsend")
-//		{
-//			User user = HibernateSupport.readOneObject(User.class, criterions);
-//		}
-//		
-//		Properties props = new Properties();
-//	    props.put("mail.smtp.host", "localhost");
-//	    props.put("mail.from", "admin@travelsales.com");
-//	    Session session = Session.getInstance(props, null);
-	    
-//	    String message;
-//	    try {
-//	        MimeMessage msg = new MimeMessage(session);
-//	        msg.setFrom();
-//	        msg.setRecipients(Message.RecipientType.TO,
-//	                          "strass.michael@gmx.net");
-//	        msg.setSubject("You are logged in!");
-//	        msg.setSentDate(new Date());
-//	        msg.setText("Hallo");
-//	        Transport.send(msg);
-//	    } catch (MessagingException mex) {
-//	        System.out.println("send failed, exception: " + mex);
-//	    }
 	}
-
 }
