@@ -12,6 +12,8 @@
 </head>
 <body>
 
+<% response.sendRedirect("Login"); %>
+
 <div id="wrapper">
     <header>
       <a href="index.jsp" title="Travel Sales">
