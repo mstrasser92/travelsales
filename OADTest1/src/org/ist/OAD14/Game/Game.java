@@ -1,16 +1,38 @@
 package org.ist.OAD14.Game;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
+
+import org.ist.OAD14.General.Interface.ISaveAndDelete;
 import org.ist.OAD14.Support.HibernateSupport;
 import org.ist.OAD14.User.User;
 
-public class Game {
+@Entity
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+public class Game implements ISaveAndDelete, Serializable {
 	
-	private int game_id;
-	private String name;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8941087165718929979L;
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.TABLE)
+	protected int gameID;
+	
+	@ManyToOne
 	private User author;
+	private String name;
 	private ArrayList<Level> levels;
+	private String visibility;
 	//private Evaluation evaluation;
 	
 	// public int createGame() ??
@@ -19,6 +41,29 @@ public class Game {
 	// public int editLevel(Level lvl) ??
 	// public int showEvaluations(Game game) why int?
 	
+	public Game(String name, User author, String visibility) {
+		this.name = name;
+		this.author = author;
+		this.visibility = visibility;
+		this.levels = new ArrayList<Level>();
+	}
+		
+	public int getGameID() {
+		return gameID;
+	}
+
+	public void setGameID(int gameID) {
+		this.gameID = gameID;
+	}
+
+	public String getVisibility() {
+		return visibility;
+	}
+
+	public void setVisibility(String visibility) {
+		this.visibility = visibility;
+	}
+
 	public void playGame(Game game){
 		//TODO
 	}
@@ -31,12 +76,8 @@ public class Game {
 		levels.remove(lvl);
 	}
 	
-	public int getGame_id() {
-		return game_id;
-	}
-
-	public void setGame_id(int game_id) {
-		this.game_id = game_id;
+	public ArrayList<Level> getLevels() {
+		return levels;
 	}
 
 	public String getName() {
@@ -55,14 +96,15 @@ public class Game {
 		this.author = author;
 	}
 
+	@Override
 	public boolean saveToDB() {
 		if(!HibernateSupport.commit(this))
 			return false;
 		return true;
 	}
 
+	@Override
 	public void deleteFromDB() {
 		HibernateSupport.deleteObject(this);
 	}
-
 }

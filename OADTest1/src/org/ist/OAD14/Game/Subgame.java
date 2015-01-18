@@ -1,24 +1,45 @@
 package org.ist.OAD14.Game;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
+import org.ist.OAD14.General.Interface.ISaveAndDelete;
 import org.ist.OAD14.Support.HibernateSupport;
 
-public class Subgame {
+@Entity
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+public class Subgame implements ISaveAndDelete, Serializable {
 
-	private int subgame_id;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3827928826051196223L;
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.TABLE)
+	protected int subgameID;
+	
 	private ArrayList<Node> nodes;
-	private ArrayList<Constraint> constraints;
+	private ArrayList<Restriction> restriction;
 	
-	public Subgame (int id){
-		this.subgame_id = id;
+	public Subgame (){
+		this.nodes = new ArrayList<Node>();
+		this.restriction = new ArrayList<Restriction>();
 	}
 	
-	public int getSubgame_id(){
-		return subgame_id;
+	public int getSubgameID(){
+		return subgameID;
 	}
 	
-	public void setSubgame_id(int id){
-		subgame_id = id;
+	public void setSubgameID(int id){
+		subgameID = id;
 	}
 	
 	public void addNode(Node node){
@@ -29,20 +50,22 @@ public class Subgame {
 		nodes.remove(node);
 	}
 	
-	public void addConstraint(Constraint constr){
-		constraints.add(constr);
+	public void addRestriction(Restriction constr){
+		restriction.add(constr);
 	}
 	
-	public void deleteConstraint(Constraint constr){
-		constraints.remove(constr);
+	public void deleteRestriction(Restriction constr){
+		restriction.remove(constr);
 	}
 		
+	@Override
 	public boolean saveToDB() {
 		if(!HibernateSupport.commit(this))
 			return false;
 		return true;
 	}
 
+	@Override
 	public void deleteFromDB() {
 		HibernateSupport.deleteObject(this);
 	}

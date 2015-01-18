@@ -1,8 +1,12 @@
+<%@page import="org.ist.OAD14.Game.Level"%>
+<%@page import="java.util.*"%>
 <!--<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 <%
  String errorMessage = (String)request.getAttribute("errorMessage");
+ List<Level> levels = (List<Level>)request.getAttribute("levels");
+ Level current_level = (Level)request.getAttribute("current_level");
 %>-->
 <!DOCTYPE html>
 <html>
@@ -57,6 +61,29 @@
     </header>
     <div class="showGames" id="content">
       <ul class="config">
+        
+         <%
+         	if (levels.size() != 0){
+	        	for (int i = 1; i <= levels.size(); i++) {
+		        	%>
+		        	<form method="post">
+		        	<li>
+			          <input type="submit" value="<%=i %>" />
+			        </li>
+			        <input type="hidden" name="subGameID" value="<%=levels.get(i).getLevelID()%>">
+			        </form>
+			        <%
+		    	}
+         	}
+		 %>
+		 <li>
+	          <a href="#" title="+">
+	            <!-- <img src="img/new_game_btn.png" alt="New Level" />  -->
+	          </a>
+	     </li>
+		 	
+        
+        <!-- 
         <li>
           Level: 
         </li>
@@ -69,6 +96,8 @@
         <li>
           3 
         </li>
+        -->
+        
       </ul>
       <span class="first">
         <a href="#" title="Public">
@@ -88,48 +117,68 @@
             <img src="img/new_game_btn.png" alt="New Game" />
           </a>
         </li>
+        
+               
+        <%
+        	for (int i = 0; i < current_level.getSubgames().size(); i++) {
+	        	%>
+	        	<form method="post">
+	        	<li>
+		          <h2>Subgame <%=i %></h2>
+		          <input type="image" src="img/game_btn.png" alt="Submit Form" />
+		          <p> </p>
+		        </li>
+		        <input type="hidden" name="subGameID" value="<%=current_level.getSubgames().get(i).getSubgameID() %>">
+		        </form>
+		        <%
+	    	}
+		 %>
+		 
+        
+        <!--
         <li>
           <h2>Game 1</h2>
           <a href="game1.jsp" title="Add Game">
             <img src="img/game_btn.png" alt="Game" />
           </a>
-          <p>From username</p>
+          <p> </p>
         </li>
         <li>
          <h2>Game 2</h2>
           <a href="#" title="Add Game">
             <img src="img/game_btn.png" alt="Game" />
           </a>
-          <p>From username</p>
+          <p> </p>
         </li>
         <li>
           <h2>Game 3</h2>
           <a href="#" title="Add Game">
             <img src="img/game_btn.png" alt="Game" />
           </a>
-          <p>From username</p>
+          <p> </p>
         </li>
         <li>
           <h2>Game 4</h2>
           <a href="#" title="Add Game">
             <img src="img/game_btn.png" alt="Game" />
           </a>
-          <p>From username</p>
+          <p> </p>
         </li>
         <li>
           <h2>Game 5</h2>
           <a href="#" title="Add Game">
             <img src="img/game_btn.png" alt="Game" />
           </a>
-          <p>From username</p>
+          <p> </p>
         </li>
         <li>
           <h2>Game 6</h2>
           <a href="#" title="Add Game">
             <img src="img/game_btn.png" alt="Game" />
           </a>
-          <p>From username</p>
+          <p> </p>
         </li>
+        -->
       </ul>
     </div>
   </div>

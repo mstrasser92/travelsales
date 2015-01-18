@@ -30,6 +30,10 @@ public class DatabaseConstruction {
 		configuration.addAnnotatedClass(CreatorUser.class);
 		configuration.addAnnotatedClass(Application.class);
 		configuration.addAnnotatedClass(Node.class);
+		configuration.addAnnotatedClass(Restriction.class);
+		configuration.addAnnotatedClass(Subgame.class);
+		configuration.addAnnotatedClass(Level.class);
+		configuration.addAnnotatedClass(Game.class);
 		
 		configuration.configure("hibernate.cfg.xml");
 
