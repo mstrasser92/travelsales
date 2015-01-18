@@ -123,6 +123,12 @@ div.overlay
 	z-index:100;
 }
 
+input#gamename 
+{
+	width: 70%;
+	background:transparent;
+}
+
 /* ************************************
  *
  * @Section: Header

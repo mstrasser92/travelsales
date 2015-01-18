@@ -25,13 +25,11 @@
 <body>
 
 <div id="menu">
-	<table cellpadding='5' cellspacing='0' width='122' height='183' style='border-style:outset;border-width:1;border-color:#3a6c96;background-color:#4682B4'>
-		<tr><td><a class='menu' href='javascript:history.back()'>&nbsp;Zur&uuml;ck</a></td></tr>
-		<tr><td><a class='menu' href='javascript:history.forward()'>&nbsp;Vorw&auml;rts</a></td></tr>
-		<tr><td><hr class='menu'><a class='menu' href='javascript:location.reload()'>Aktualisieren</a></td></tr>
-		<tr><td><a class='menu' href='javascript:viewSource()'>Quelltext</a></td></tr>
-		<tr><td><a class="menu" href="javascript:void(0)" onclick="document.getElementById('notifyAdmin').style.display = 'inline';">Notify Admin</a></td></tr>
-		<tr><td><hr class='menu'><a class="menu" href="javascript:void(0)" onclick="document.getElementById('giveFeedback').style.display = 'inline';">Give Feedback</a></td></tr>
+	<table cellpadding="5" cellspacing="0" style="height:140px; width:122px;border-style:outset;border-width:1;border-color:#3a6c96;background-color:#4682B4">
+		<tr><td><a class='menu' href="subGameList.jsp?id=<%= id %>" onclick="">&nbsp;&nbsp;Play</a></td></tr>
+		<tr><td><a class='menu' href="javascript:void(0)" onclick="document.getElementById('gamePreferences').style.display = 'inline';">&nbsp;&nbsp;Properties&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td></tr>
+		<tr><td><hr class='menu'><a class='menu' href='javascript:void(0)'>&nbsp;&nbsp;Delete</a></td></tr>
+		<tr><td><hr class='menu'><a class="menu" href="javascript:void(0)" onclick="document.getElementById('giveFeedback').style.display = 'inline';">&nbsp;&nbsp;Give Feedback</a></td></tr>
 	</table>
 </div>
 
@@ -41,12 +39,36 @@
 	<form name="sendFeedback" action="SendEmail" method="get">
 		<input type="hidden" name="action" value="feedback"> 
 		<input type="hidden" id="useridhidden" name="id" value="<%= id %>">
-		<textarea id="feedbackText" name="message" rows="10" cols="60" style="resize: none;">Your feedback...</textarea>
+		<textarea id="feedbackText" onclick="if(clicked==0) value=''; clicked=1;" name="message" rows="10" cols="60" style="resize: none;">Your feedback...</textarea>
 		<br>
-    	<a href="javascript:void(0)" onclick="sendFeedback.submit(); document.getElementById('feedbackText').value = 'Your feedback...';">
+    	<a href="javascript:void(0)" onclick="sendFeedback.submit(); document.getElementById('feedbackText').value = 'Your feedback...';clicked=0;">
     		<img style="margin-top: 10px; margin-left: 10px" src="img/send_btn.png" alt="Send" height="29" width="171"/></a>
-    	<a href="javascript:void(0)" onclick="document.getElementById('giveFeedback').style.display = 'none';">
+    	<a href="javascript:void(0)" onclick="document.getElementById('giveFeedback').style.display = 'none'; clicked=0;">
 			<img style="margin-top: 10px; margin-left: 50px;" src="img/back_btn_small.png" alt="Back" height="29" width="171"/></a>
+	</form>
+</div>
+
+<div id="gamePreferences" class="overlay">
+	<h2>Preferences</h2>
+	<br>
+	<form name="gamePreferences" action="" method="get">
+			<input type="hidden" name="action" value="preferences"> 
+			<input type="hidden" id="useridhidden" name="id" value="<%= id %>">
+			<div>Name:&nbsp;<input type="text" id="gamename" value=""></div>
+		   	<div>Logo:
+		   	<a href="javascript:void(0)" onclick="sendFeedback.submit(); clicked=0;">
+		   		<img style="align: left;margin-top: 10px; margin-left: 10px" src="img/select_btn.png" alt="Select" height="29" width="171"/></a>
+		   	<img style="position:absolute; margin-left:60px;" src="img/bg_placeholder.png" alt="Logo" height="100" width="100"/></a>
+		   	<br>
+		   	<a href="javascript:void(0)" onclick="document.getElementById('gamePreferences').style.display = 'none'; clicked=0;">
+				<img style="margin-top: 0px; margin-left: 81px;" src="img/upload_btn.png" alt="Upload" height="29" width="171"/></a>
+   			
+   			</div>
+   			<div align="center">
+			<a href="javascript:void(0)" style="align: center;"onclick="document.getElementById('gamePreferences').style.display = 'none'">
+   			<br>
+   			<img style="margin-right: 80px;"src="img/save_btn_small.png" alt="Save" height="29" width="171"/></a>
+   			</div>
 	</form>
 </div>
 
