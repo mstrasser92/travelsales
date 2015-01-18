@@ -31,18 +31,7 @@ public class SubGameList extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("SubGameList entered");
-		String userId = request.getParameter("id");
-
-		User user = HibernateSupport.readOneObjectByID(User.class, Integer.parseInt(userId));
-		
-		if(user != null){
-			request.setAttribute("user", user);
-			request.getRequestDispatcher("SubgameList.jsp").include(request, response);
-			return;
-		} else {
-			request.getRequestDispatcher("index.jsp").include(request, response);
-			return;
-		}
+		request.getRequestDispatcher("SubgameList.jsp").include(request, response);
 	}
 
 	/**

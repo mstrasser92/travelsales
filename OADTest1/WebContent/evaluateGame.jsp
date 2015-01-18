@@ -4,6 +4,9 @@
  String errorMessage = (String)request.getAttribute("errorMessage");
  String id = (String)request.getParameter("id");
  String game = (String)request.getParameter("game");
+ String notifiedSent = "none";
+ if(request.getParameter("notified")!= null)
+	 notifiedSent = "inline";
 %>  
   
 <!DOCTYPE html>
@@ -34,6 +37,13 @@
 			<img style="margin-top: 10px; margin-left: 50px;" src="img/back_btn_small.png" alt="Back" height="29" width="171"/></a>
 	</form>
 </div>
+
+<div id="notified" class="overlay">
+	<p style="margin-left: 20px"><br><br><br>The admin was notified successfully!<br><br><br></p>
+ 	<a href="javascript:void(0)" onclick="document.getElementById('notified').style.display = 'none';">
+			<img style="margin-top: 10px; margin-left: 150px;" src="img/back_btn_small.png" alt="Back" height="29" width="171"/></a>
+</div>
+<script>document.getElementById('notified').style.display = '<%= notifiedSent%>';</script>
 
   <div id="wrapper">
     <header>

@@ -27,7 +27,7 @@
 	<br>Are you sure? 
 	<br>Then enter your Username and click send! </p>
 	<form name="sendpwform" action="SendEmail" method="get">
-		<input id="username" name="username" type="text" value="test">
+		<input id="username" name="username" type="text">
 		<input type="hidden" name="action" value="pwsend"> 
     	<a href="javascript:void(0)" onclick="sendpwform.submit(); document.getElementById('sendPassword').style.display = 'none'; document.getElementById('username').value = ''">
     	<img style="margin-top: 10px; margin-left: 10px" src="img/send_btn.png" alt="Send" height="29" width="171"/></a>
