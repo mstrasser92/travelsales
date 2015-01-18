@@ -3,6 +3,11 @@
     
 <%
  String errorMessage = (String)request.getAttribute("errorMessage");
+ String id = (String)request.getParameter("id");
+ String fbsent = "none";
+ if(request.getParameter("feedbacksend")!= null)
+	 fbsent = "inline";
+	 
 %>-->
 <!DOCTYPE html>
 <html>
@@ -43,14 +48,24 @@
 
 <div id="giveFeedback" class="overlay">
 	<p>Give your Feedback:</p>
-	<textarea id="feedbackText" name="message" rows="10" cols="60" style="resize: none;">Your feedback...</textarea>
-	<br>
-    <a href="javascript:void(0)" onclick="document.getElementById('giveFeedback').style.display = 'none'; document.getElementById('feedbackText').value = 'Your feedback...';">
-    	<img style="margin-top: 10px; margin-left: 10px" src="img/send_btn.png" alt="Send" height="29" width="171"/></a>
-    	
-    <a href="javascript:void(0)" onclick="document.getElementById('giveFeedback').style.display = 'none';">
-		<img style="margin-top: 10px; margin-left: 50px;" src="img/back_btn_small.png" alt="Back" height="29" width="171"/></a>
+	<form name="sendFeedback" action="SendEmail" method="get">
+		<input type="hidden" name="action" value="feedback"> 
+		<input type="hidden" id="useridhidden" name="id" value="<%= id %>">
+		<textarea id="feedbackText" name="message" rows="10" cols="60" style="resize: none;">Your feedback...</textarea>
+		<br>
+    	<a href="javascript:void(0)" onclick="sendFeedback.submit(); document.getElementById('feedbackText').value = 'Your feedback...';">
+    		<img style="margin-top: 10px; margin-left: 10px" src="img/send_btn.png" alt="Send" height="29" width="171"/></a>
+    	<a href="javascript:void(0)" onclick="document.getElementById('giveFeedback').style.display = 'none';">
+			<img style="margin-top: 10px; margin-left: 50px;" src="img/back_btn_small.png" alt="Back" height="29" width="171"/></a>
+	</form>
 </div>
+
+<div id="feedbackSent" class="overlay">
+	<p style="margin-left: 20px"><br><br><br>Your Feedback was sent successfully!<br><br><br></p>
+ 	<a href="javascript:void(0)" onclick="document.getElementById('feedbackSent').style.display = 'none';">
+			<img style="margin-top: 10px; margin-left: 150px;" src="img/back_btn_small.png" alt="Back" height="29" width="171"/></a>
+</div>
+<script>document.getElementById('feedbackSent').style.display = '<%= fbsent%>';</script>
 
   <div id="wrapper">
     <header>

@@ -49,30 +49,32 @@ public class SendEmail extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String username = request.getParameter("username");
-		List<Criterion> criterions = new ArrayList<Criterion>();
-		criterions.add(Restrictions.eq("username", username));
-		CreatorUser user = HibernateSupport.readOneObject(CreatorUser.class, criterions);
-		if(user != null)
-		{	
-			userId = String.valueOf(user.getUserID());
-			userEmail = user.getMailAddress();
-		} else {
-			response.sendRedirect("Login?errorMessage='No such user registered!'");
-			return;
-		}
+
 		String message = null;
 		String subject = null;
-		String to = "admin@travelsales.com";
+		String to = "strass.michael@gmx.net";
 		String from = "admin@travelsales.com";
 		
-		System.out.println("User is:" + userId + " und with Email: " + userEmail);
+		
 		
 		String action = request.getParameter("action");
 		
 		System.out.println("Action to perform is: "+ action);
 		if(action.equals("pwsend"))
 		{
+			String username = request.getParameter("username");
+			List<Criterion> criterions = new ArrayList<Criterion>();
+			criterions.add(Restrictions.eq("username", username));
+			CreatorUser user = HibernateSupport.readOneObject(CreatorUser.class, criterions);
+			if(user != null)
+			{	
+				userId = String.valueOf(user.getUserID());
+				userEmail = user.getMailAddress();
+			} else {
+				response.sendRedirect("Login?errorMessage='No such user registered!'");
+				return;
+			}
+			System.out.println("User is:" + userId + " und with Email: " + userEmail);
 			response.sendRedirect("Login");
 			if(this.userId != null)
 			{
@@ -81,6 +83,23 @@ public class SendEmail extends HttpServlet {
 				message += "\n \n Your TravelSales-Team";
 				to = this.userEmail;
 				System.out.println("Got the message set up!");
+			}	
+		} else if(action.equals("feedback")) {
+			String id = request.getParameter("id");
+			System.out.println("Got to feedback, userid: " + id);
+			this.userId = id;
+			if(this.userId != null)
+			{
+				CreatorUser user = HibernateSupport.readOneObjectByID(CreatorUser.class, Integer.parseInt(id));
+				String userName = user.getUsername();
+				String userMail = user.getMailAddress();
+				subject = "Feedback from " + userName;
+				message = "This is a Feedback from User: " + userName;
+				message += "\n with E-Mail: " + userMail;
+				message += "\n This is the feedback: \n";
+				message += request.getParameter("message");
+				System.out.println("Got the message set up!");
+				response.sendRedirect("GameList?id="+ this.getUserId()+"&feedbacksend=true");
 			}
 		} else {
 			response.sendRedirect("Login");
