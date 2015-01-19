@@ -70,16 +70,16 @@
     </header>
     <div class="showGames" id="content">
       <ul class="config">
-        <li>
+        <li style="color: black">
           Level: 
         </li>
-        <li>
+        <li class="levelbtn">
           1 
         </li>
-        <li>
+        <li class="levelbtn">
           2 
         </li>
-        <li>
+        <li class="levelbtn">
           3 
         </li>
       </ul>

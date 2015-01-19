@@ -414,7 +414,7 @@ nav  li {
 }
 
 .showGames span.first {
-  margin-left: 170px;
+  margin-left: 180px;
 }
 
 span a {
@@ -422,7 +422,7 @@ span a {
 }
 
 .showGames ul.config {
-  margin-left: 300px;
+  margin-left: 250px;
 }
 
 .showGames ul li {
@@ -432,7 +432,20 @@ span a {
   margin-bottom: 30px;
 }
 
+.showGames ul.config li {
+	margin-left: 0px;
+	margin-bottom: -10px;
+	color: white;
+}
 
+.levelbtn
+{
+	background-image: url("../img/level_btn.png");
+	background-repeat: no-repeat;
+	background-position: 0px -12px;
+	height: 62px;
+	width: 62px;
+}
 
 
 
