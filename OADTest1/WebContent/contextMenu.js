@@ -44,6 +44,36 @@ function hideMenu(e) {
 	}
 }
 
+// Erkennen was geklickt wurde
+$(function() {
+		$('div').on('contextmenu', 'a', function(e){
+		    if(this.name == "game")
+	    	{
+		    	clickedongame = 1;
+		    	$('.gamemenu').css('display', 'inline');
+		    	$('.nongame').css('display', 'none');
+	    	} else {
+	    		$('.gamemenu').css('display', 'none');
+	    		$('.nongame').css('display', 'inline');
+	    	}
+		});
+		$('div').on('contextmenu', 'div', function(e){
+		    if(this.id == "content" && clickedongame != 1)
+	    	{		    	
+		    	$('.gamemenu').css('display', 'none');
+	    		$('.nongame').css('display', 'inline');
+	    	}
+		    clickedongame = 0;
+		});		
+//	    $('ul').on('contextmenu', 'a', function(e) { //Get li under ul and invoke on contextmenu
+//	    e.preventDefault(); //Prevent defaults
+//	    if(this.name == "game")
+//    	{
+//	    	$('.gamemenu').css('display', 'inline');
+//	    	$('.nongame').css('display', 'none');
+//    	}
+//    });
+});
 
 // Quelltext anzeigen
 function viewSource() {

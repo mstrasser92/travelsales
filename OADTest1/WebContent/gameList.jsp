@@ -25,10 +25,11 @@
 <body>
 
 <div id="menu">
-	<table cellpadding="5" cellspacing="0" style="height:140px; width:122px;border-style:outset;border-width:1;border-color:#3a6c96;background-color:#4682B4">
-		<tr><td><a class='menu' href="subGameList.jsp?id=<%= id %>" onclick="">&nbsp;&nbsp;Play</a></td></tr>
-		<tr><td><a class='menu' href="javascript:void(0)" onclick="document.getElementById('gamePreferences').style.display = 'inline';">&nbsp;&nbsp;Properties&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td></tr>
-		<tr><td><hr class='menu'><a class='menu' href='javascript:void(0)'>&nbsp;&nbsp;Delete</a></td></tr>
+	<table id="contextmenu" cellpadding="5" cellspacing="0" style="">
+		<tr class="nongame"><td><a class='menu'  href="subGameList.jsp?id=<%= id %>" onclick="">&nbsp;&nbsp;New Game</a></td></tr>
+		<tr class="gamemenu"><td><a class='menu'  href="subGameList.jsp?id=<%= id %>" onclick="">&nbsp;&nbsp;Play</a></td></tr>
+		<tr class="gamemenu"><td><a class='menu'  href="javascript:void(0)" onclick="document.getElementById('gamePreferences').style.display = 'inline';">&nbsp;&nbsp;Properties&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td></tr>
+		<tr class="gamemenu"><td><hr class='menu'><a class='menu' href='javascript:void(0)'>&nbsp;&nbsp;Delete</a></td></tr>
 		<tr><td><hr class='menu'><a class="menu" href="javascript:void(0)" onclick="document.getElementById('giveFeedback').style.display = 'inline';">&nbsp;&nbsp;Give Feedback</a></td></tr>
 	</table>
 </div>
@@ -121,42 +122,42 @@
         </li>
         <li>
           <h2>Game 1</h2>
-          <a href="subGameList.jsp?id=<%= id %>" title="Add Game">
+          <a name="game" href="subGameList.jsp?id=<%= id %>" title="Add Game">
             <img src="img/game_btn.png" alt="Game" />
           </a>
           <p>From username</p>
         </li>
         <li>
          <h2>Game 2</h2>
-          <a href="#" title="Add Game">
+          <a name="game" href="#" title="Add Game">
             <img src="img/game_btn.png" alt="Game" />
           </a>
           <p>From username</p>
         </li>
         <li>
           <h2>Game 3</h2>
-          <a href="#" title="Add Game">
+          <a name="game" href="#" title="Add Game">
             <img src="img/game_btn.png" alt="Game" />
           </a>
           <p>From username</p>
         </li>
         <li>
           <h2>Game 4</h2>
-          <a href="#" title="Add Game">
+          <a name="game" href="#" title="Add Game">
             <img src="img/game_btn.png" alt="Game" />
           </a>
           <p>From username</p>
         </li>
         <li>
           <h2>Game 5</h2>
-          <a href="#" title="Add Game">
+          <a name="game" href="#" title="Add Game">
             <img src="img/game_btn.png" alt="Game" />
           </a>
           <p>From username</p>
         </li>
         <li>
           <h2>Game 6</h2>
-          <a href="#" title="Add Game">
+          <a name="game" href="#" title="Add Game">
             <img src="img/game_btn.png" alt="Game" />
           </a>
           <p>From username</p>

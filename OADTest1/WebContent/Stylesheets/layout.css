@@ -103,9 +103,30 @@ div#menu
 {
 	display: none;
 	position:absolute;
+	padding: 10px;
 	top:100px;
 	left:100px;
 	z-index:100;
+}
+
+table#contextmenu
+{
+	border-style:outset;
+	border-width:1;
+	border-color:#3a6c96;
+	background-color:#4682B4;
+	height: 80px;
+	width: 200px;
+}
+
+tr.nongame
+{
+	display:inline;
+}
+
+tr.gamemenu
+{
+	display: none;
 }
 
 div.overlay
