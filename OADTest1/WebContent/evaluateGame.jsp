@@ -47,7 +47,7 @@
 
   <div id="wrapper">
     <header>
-      <a href="index.jsp" title="Travel Sales">
+      <a href="GameList?id=<%=id%>" title="Travel Sales">
         <div id="logo">
           <img src="img/logo.png" alt="Logo" />
         </div>

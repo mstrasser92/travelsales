@@ -66,6 +66,10 @@ input[type=submit] {
   width: 960px;
   height: 540px;
   background: url("../img/wrapper_bg.jpg") no-repeat;
+  -webkit-background-size: cover; /* For WebKit*/
+  -moz-background-size: cover;    /* Mozilla*/
+  -o-background-size: cover;      /* Opera*/
+  background-size: cover; 
   margin-left: auto;
   margin-right: auto;
 }
@@ -76,6 +80,7 @@ a.menu
 	text-decoration:none;
 	font-family:Verdana,Arial;
 	font-size:80%;
+	width: 100%;
 }
 
 a.menu:link,a.menu:visited 
@@ -116,17 +121,19 @@ table#contextmenu
 	border-color:#3a6c96;
 	background-color:#4682B4;
 	height: 80px;
-	width: 200px;
+	width: 220px;
 }
 
 tr.nongame
 {
 	display:inline;
+	width: 100%;
 }
 
 tr.gamemenu
 {
 	display: none;
+	width: 100%;
 }
 
 div.overlay

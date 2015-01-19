@@ -63,7 +63,7 @@ public class Login extends HttpServlet {
 		}
 		System.out.println("user: " + user.getUsername() + " password: " + user.getPassword() + " logged in");
 		System.out.println("Send redirect from LOGIN to HOME");
-		response.sendRedirect("Home?id="+user.getUserID());
+		response.sendRedirect("GameList?id="+user.getUserID());
 	}
 
 }

@@ -6,8 +6,8 @@ nn6=(document.getElementById && !document.all)?1:0;
 
 // Kontextmenü initialisieren
 if (ie5 || nn6) {
-	menuWidth=160;
-	menuHeight=200;
+	menuWidth = 180;
+	menuHeight = 120;
 	menuStatus=0; 
 	// Rechter Mausklick: Menü anzeigen, linker Mausklick: Menü verstecken
 	document.oncontextmenu=showMenu; //oncontextmenu geht nicht bei NN 6.01
@@ -16,6 +16,8 @@ if (ie5 || nn6) {
 
 // Kontextmenü anzeigen
 function showMenu(e) {
+	menuWidth = document.getElementById("menu").clientWidth;
+	menuHeight = document.getElementById("menu").clientHeight;
 	if(ie5) {
 		if(event.clientX>menuWidth) xPos=event.clientX-menuWidth+document.body.scrollLeft;
 		else xPos=event.clientX+document.body.scrollLeft;
@@ -52,27 +54,20 @@ $(function() {
 		    	clickedongame = 1;
 		    	$('.gamemenu').css('display', 'inline');
 		    	$('.nongame').css('display', 'none');
+		    	document.getElementById("gamename").value= this.title;
 	    	} else {
 	    		$('.gamemenu').css('display', 'none');
 	    		$('.nongame').css('display', 'inline');
 	    	}
 		});
-		$('div').on('contextmenu', 'div', function(e){
-		    if(this.id == "content" && clickedongame != 1)
+		$('body').on('contextmenu', 'div', function(e){
+		    if(this.id =="content" &&clickedongame != 1)
 	    	{		    	
 		    	$('.gamemenu').css('display', 'none');
 	    		$('.nongame').css('display', 'inline');
 	    	}
 		    clickedongame = 0;
 		});		
-//	    $('ul').on('contextmenu', 'a', function(e) { //Get li under ul and invoke on contextmenu
-//	    e.preventDefault(); //Prevent defaults
-//	    if(this.name == "game")
-//    	{
-//	    	$('.gamemenu').css('display', 'inline');
-//	    	$('.nongame').css('display', 'none');
-//    	}
-//    });
 });
 
 // Quelltext anzeigen

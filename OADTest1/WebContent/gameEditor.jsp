@@ -1,5 +1,8 @@
 <!--<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>-->
+    
+<% String id = (String)request.getParameter("id");%>    
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +19,7 @@
 <body>
   <div id="wrapper">
     <header>
-      <a href="index.jsp" title="Travel Sales">
+      <a href="GameList?id=<%=id%>" title="Travel Sales">
         <div id="logo">
           <img src="img/logo.png" alt="Logo" />
         </div>

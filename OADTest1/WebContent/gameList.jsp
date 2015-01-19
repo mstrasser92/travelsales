@@ -1,7 +1,10 @@
+<%@page import="org.ist.OAD14.User.CreatorUser"%>
+<%@page import="org.ist.OAD14.User.User"%>
 <!--<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 <%
+ User user = (User)request.getAttribute("user");
  String errorMessage = (String)request.getAttribute("errorMessage");
  String id = (String)request.getParameter("id");
  String fbsent = "none";
@@ -82,7 +85,7 @@
 
   <div id="wrapper">
     <header>
-      <a href="index.jsp" title="Travel Sales">
+      <a href="GameList?id=<%=id%>" title="Travel Sales">
         <div id="logo">
           <img src="img/logo.png" alt="Logo" />
         </div>
@@ -113,51 +116,52 @@
       </nav>
     </header>
     <div class="showGames" id="content">
+	Welcome back, <%=user.getUsername() %> - enjoy TravelSales! <br> <br>
       <ul>
         <li>
           <h2>New Game</h2>
-          <a href="#" title="New Game">
+          <a href="GameEditor?id=<%= id %>" title="New Game">
             <img src="img/new_game_btn.png" alt="New Game" />
           </a>
         </li>
         <li>
           <h2>Game 1</h2>
-          <a name="game" href="subGameList.jsp?id=<%= id %>" title="Add Game">
+          <a name="game" href="subGameList.jsp?id=<%= id %>" title="Game 1">
             <img src="img/game_btn.png" alt="Game" />
           </a>
           <p>From username</p>
         </li>
         <li>
          <h2>Game 2</h2>
-          <a name="game" href="#" title="Add Game">
+          <a name="game" href="#" title="Game 2">
             <img src="img/game_btn.png" alt="Game" />
           </a>
           <p>From username</p>
         </li>
         <li>
           <h2>Game 3</h2>
-          <a name="game" href="#" title="Add Game">
+          <a name="game" href="#" title="Game 3">
             <img src="img/game_btn.png" alt="Game" />
           </a>
           <p>From username</p>
         </li>
         <li>
           <h2>Game 4</h2>
-          <a name="game" href="#" title="Add Game">
+          <a name="game" href="#" title="Game 4">
             <img src="img/game_btn.png" alt="Game" />
           </a>
           <p>From username</p>
         </li>
         <li>
           <h2>Game 5</h2>
-          <a name="game" href="#" title="Add Game">
+          <a name="game" href="#" title="Game 5">
             <img src="img/game_btn.png" alt="Game" />
           </a>
           <p>From username</p>
         </li>
         <li>
           <h2>Game 6</h2>
-          <a name="game" href="#" title="Add Game">
+          <a name="game" href="#" title="Game 6">
             <img src="img/game_btn.png" alt="Game" />
           </a>
           <p>From username</p>
