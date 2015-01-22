@@ -11,6 +11,7 @@ public class Game {
 	private String name;
 	private User author;
 	private ArrayList<Level> levels;
+	
 	//private Evaluation evaluation;
 	
 	// public int createGame() ??
