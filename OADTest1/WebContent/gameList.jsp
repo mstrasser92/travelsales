@@ -52,7 +52,7 @@
 			<img style="margin-top: 10px; margin-left: 50px;" src="img/back_btn_small.png" alt="Back" height="29" width="171"/></a>
 	</form>
 </div>
-
+asdfasdf
 <div id="gamePreferences" class="overlay">
 	<h2>Preferences</h2>
 	<br>
