@@ -29,8 +29,11 @@ public class Subgame implements ISaveAndDelete, Serializable {
 	@GeneratedValue(generator="generator")
 	protected int subgameID;
 	
+	protected int levelID;
+	
 	@Lob
 	private ArrayList<Node> nodes;
+
 	@Lob
 	private ArrayList<Restriction> restriction;
 	
@@ -63,6 +66,14 @@ public class Subgame implements ISaveAndDelete, Serializable {
 		restriction.remove(constr);
 	}
 		
+	public int getLevelID() {
+		return levelID;
+	}
+
+	public void setLevelID(int levelID) {
+		this.levelID = levelID;
+	}
+	
 	@Override
 	public boolean saveToDB() {
 		if(!HibernateSupport.commit(this))

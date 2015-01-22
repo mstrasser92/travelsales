@@ -41,14 +41,20 @@ public class SubGameList extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("SubGameList entered");
 		
+
 		String userID = request.getParameter("id");
 		User current_user = HibernateSupport.readOneObjectByID(User.class, Integer.parseInt(userID));
 		
 		String gameID = request.getParameter("gameID");
 		Game current_game = HibernateSupport.readOneObjectByID(Game.class, Integer.parseInt(gameID));
 		
-		ArrayList<Level> levels = current_game.getLevels();
+		// get all levels of current game
+		List<Criterion> criterions = new ArrayList<Criterion>();
+		criterions.add(Restrictions.eq("gameID", current_game.getGameID()));
+		List<Level> levels = HibernateSupport.readMoreObjects(Level.class, criterions);
+				
 		
+		// find current level so we know which subgames we should display
 		String levelID = request.getParameter("levelID");
 		Level current_level = new Level();
 		
@@ -60,6 +66,12 @@ public class SubGameList extends HttpServlet {
 				current_level = HibernateSupport.readOneObjectByID(Level.class, Integer.parseInt(levelID));
 			}
 		}
+		
+		// get all subgames of current level
+		criterions = new ArrayList<Criterion>();
+		criterions.add(Restrictions.eq("levelID", current_level.getLevelID()));
+		List<Subgame> subgames = HibernateSupport.readMoreObjects(Subgame.class, criterions);
+		
 	//TODO what if there is no level?	
 	
 		/*
@@ -85,8 +97,10 @@ public class SubGameList extends HttpServlet {
 		}
 		*/
 		
+		
 		request.setAttribute("levels", levels);		
 		request.setAttribute("current_level", current_level);
+		request.setAttribute("subgames", subgames);
 		request.getRequestDispatcher("subGameList.jsp").include(request, response);
 		
 		
@@ -96,7 +110,15 @@ public class SubGameList extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
+		String currentGameID = request.getParameter("gameID");
+		String currentLevelID = request.getParameter("levelID");
+				
+		String userId = request.getParameter("id");
+
+		response.sendRedirect("SubGameList?id="+userId+"&gameID="+ currentGameID+"&levelID="+currentLevelID);
+
+
 		
 		
 	}

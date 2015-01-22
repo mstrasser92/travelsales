@@ -21,7 +21,7 @@
   <!-- Disable the second-level cache -->
   <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
   <!-- Magic Zeile create, update -->
-  <property name="hibernate.hbm2ddl.auto">update</property>
+  <property name="hibernate.hbm2ddl.auto">create</property>
   <!-- Echo all executed SQL to stdout -->
   <property name="show_sql">false</property>
  </session-factory>

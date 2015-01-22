@@ -1,4 +1,5 @@
 <%@page import="org.ist.OAD14.Game.Level"%>
+<%@page import="org.ist.OAD14.Game.Subgame"%>
 <%@page import="java.util.*"%>
 <!--<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -6,7 +7,9 @@
 <%
  String errorMessage = (String)request.getAttribute("errorMessage");
  List<Level> levels = (List<Level>)request.getAttribute("levels");
+ List<Subgame> subgames = (List<Subgame>)request.getAttribute("subgames");
  Level current_level = (Level)request.getAttribute("current_level");
+ 
 %>-->
 <!DOCTYPE html>
 <html>
@@ -70,7 +73,7 @@
 		        	<li>
 			          <input type="submit" value="<%=i %>" />
 			        </li>
-			        <input type="hidden" name="subGameID" value="<%=levels.get(i-1).getLevelID()%>">
+			        <input type="hidden" name="levelID" value="<%=levels.get(i-1).getLevelID()%>">
 			        </form>
 			        <%
 		    	}
@@ -78,7 +81,7 @@
 		 %>
 		 <li>
 	          <a href="#" title="+">
-	            <!-- <img src="img/new_game_btn.png" alt="New Level" />  -->
+	            + <!-- <img src="img/new_game_btn.png" alt="New Level" />  -->
 	          </a>
 	     </li>
 		 	
@@ -97,7 +100,7 @@
       <br />
       <ul>
         <li>
-          <h2>New Game</h2>
+          <h2>New Subgame</h2>
           <a href="#" title="New Game">
             <img src="img/new_game_btn.png" alt="New Game" />
           </a>
@@ -105,7 +108,7 @@
         
                
         <%
-        	for (int i = 1; i <= current_level.getSubgames().size(); i++) {
+        	for (int i = 1; i <= subgames.size(); i++) {
 	        	%>
 	        	<form method="post">
 	        	<li>
@@ -113,7 +116,7 @@
 		          <input type="image" src="img/game_btn.png" alt="Submit Form" />
 		          <p> </p>
 		        </li>
-		        <input type="hidden" name="subGameID" value="<%=current_level.getSubgames().get(i-1).getSubgameID() %>">
+		        <input type="hidden" name="subGameID" value="<%=subgames.get(i-1).getSubgameID() %>">
 		        </form>
 		        <%
 	    	}

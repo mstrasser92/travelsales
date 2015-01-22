@@ -91,7 +91,7 @@ public class GameList extends HttpServlet {
 		// TODO Auto-generated method stub
 		String currentGameID = request.getParameter("gameID");
 		String userId = request.getParameter("id");
-		String levelID = "0";
+		//String levelID = "0";
 		response.sendRedirect("SubGameList?id="+userId+"&gameID="+ currentGameID+"&levelID=-1");
 
 

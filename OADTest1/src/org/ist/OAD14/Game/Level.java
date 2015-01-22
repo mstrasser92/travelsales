@@ -29,6 +29,8 @@ public class Level implements ISaveAndDelete, Serializable {
 	@GeneratedValue(generator="generator")
 	protected int levelID;
 	
+	protected int gameID;
+	
 	@Lob
 	private ArrayList<Subgame> subgames;
 	
@@ -57,6 +59,14 @@ public class Level implements ISaveAndDelete, Serializable {
 	}
 	public void setLevelID(int level_id) {
 		this.levelID = level_id;
+	}
+	
+	public int getGameID() {
+		return gameID;
+	}
+
+	public void setGameID(int gameID) {
+		this.gameID = gameID;
 	}
 	
 	@Override

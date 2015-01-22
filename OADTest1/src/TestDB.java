@@ -34,19 +34,19 @@ public class TestDB {
 		Node node5 = new Node(56,55);
 		Node node6 = new Node(67,65);
 		
-		Subgame subgame1 = new Subgame();
-		Subgame subgame2 = new Subgame();
-		Subgame subgame3 = new Subgame();
-		
-		Level level1 = new Level();
-		Level level2 = new Level();
-		Level level3 = new Level();
-		
 		Game game1 = new Game("Game 1", userB, "public");
 		Game game2 = new Game("Game 2", userB, "public");
 		Game game3 = new Game("Game 3", userB, "public");
 		Game game4 = new Game("Game 4", userB, "public");
 		Game game5 = new Game("Game 5", userB, "public");
+		
+		Level level1 = new Level();
+		Level level2 = new Level();
+		Level level3 = new Level();
+		
+		Subgame subgame1 = new Subgame();
+		Subgame subgame2 = new Subgame();
+		Subgame subgame3 = new Subgame();
 		
 		subgame1.addNode(node4);
 		subgame1.addNode(node1);
@@ -69,7 +69,6 @@ public class TestDB {
 		game3.addLevel(level3);
 		
 		HibernateSupport.beginTransaction();
-		
 		node1.saveToDB();
 		node2.saveToDB();
 		node3.saveToDB();
@@ -88,8 +87,7 @@ public class TestDB {
 		game4.saveToDB();
 		game5.saveToDB();
 		HibernateSupport.commitTransaction();
-		
-		
+
 		
 		User readUser = HibernateSupport.readOneObjectByID(User.class, 1);
 		User readUser2 = HibernateSupport.readOneObjectByID(User.class, 2);
