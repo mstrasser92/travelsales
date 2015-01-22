@@ -87,7 +87,7 @@ public class SubGameList extends HttpServlet {
 		
 		request.setAttribute("levels", levels);		
 		request.setAttribute("current_level", current_level);
-		request.getRequestDispatcher("SubGameList.jsp").include(request, response);
+		request.getRequestDispatcher("subGameList.jsp").include(request, response);
 		
 		
 	}

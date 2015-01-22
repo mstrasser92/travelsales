@@ -70,7 +70,7 @@
 		        	<li>
 			          <input type="submit" value="<%=i %>" />
 			        </li>
-			        <input type="hidden" name="subGameID" value="<%=levels.get(i).getLevelID()%>">
+			        <input type="hidden" name="subGameID" value="<%=levels.get(i-1).getLevelID()%>">
 			        </form>
 			        <%
 		    	}
@@ -82,21 +82,6 @@
 	          </a>
 	     </li>
 		 	
-        
-        <!-- 
-        <li>
-          Level: 
-        </li>
-        <li>
-          1 
-        </li>
-        <li>
-          2 
-        </li>
-        <li>
-          3 
-        </li>
-        -->
         
       </ul>
       <span class="first">
@@ -120,7 +105,7 @@
         
                
         <%
-        	for (int i = 0; i < current_level.getSubgames().size(); i++) {
+        	for (int i = 1; i <= current_level.getSubgames().size(); i++) {
 	        	%>
 	        	<form method="post">
 	        	<li>
@@ -128,57 +113,12 @@
 		          <input type="image" src="img/game_btn.png" alt="Submit Form" />
 		          <p> </p>
 		        </li>
-		        <input type="hidden" name="subGameID" value="<%=current_level.getSubgames().get(i).getSubgameID() %>">
+		        <input type="hidden" name="subGameID" value="<%=current_level.getSubgames().get(i-1).getSubgameID() %>">
 		        </form>
 		        <%
 	    	}
 		 %>
-		 
-        
-        <!--
-        <li>
-          <h2>Game 1</h2>
-          <a href="game1.jsp" title="Add Game">
-            <img src="img/game_btn.png" alt="Game" />
-          </a>
-          <p> </p>
-        </li>
-        <li>
-         <h2>Game 2</h2>
-          <a href="#" title="Add Game">
-            <img src="img/game_btn.png" alt="Game" />
-          </a>
-          <p> </p>
-        </li>
-        <li>
-          <h2>Game 3</h2>
-          <a href="#" title="Add Game">
-            <img src="img/game_btn.png" alt="Game" />
-          </a>
-          <p> </p>
-        </li>
-        <li>
-          <h2>Game 4</h2>
-          <a href="#" title="Add Game">
-            <img src="img/game_btn.png" alt="Game" />
-          </a>
-          <p> </p>
-        </li>
-        <li>
-          <h2>Game 5</h2>
-          <a href="#" title="Add Game">
-            <img src="img/game_btn.png" alt="Game" />
-          </a>
-          <p> </p>
-        </li>
-        <li>
-          <h2>Game 6</h2>
-          <a href="#" title="Add Game">
-            <img src="img/game_btn.png" alt="Game" />
-          </a>
-          <p> </p>
-        </li>
-        -->
+
       </ul>
     </div>
   </div>

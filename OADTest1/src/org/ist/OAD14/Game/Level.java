@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.Lob;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.ist.OAD14.General.Interface.ISaveAndDelete;
@@ -28,6 +29,7 @@ public class Level implements ISaveAndDelete, Serializable {
 	@GeneratedValue(generator="generator")
 	protected int levelID;
 	
+	@Lob
 	private ArrayList<Subgame> subgames;
 	
 	public Level(){

@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.Lob;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.ist.OAD14.General.Interface.ISaveAndDelete;
@@ -28,7 +29,9 @@ public class Subgame implements ISaveAndDelete, Serializable {
 	@GeneratedValue(generator="generator")
 	protected int subgameID;
 	
+	@Lob
 	private ArrayList<Node> nodes;
+	@Lob
 	private ArrayList<Restriction> restriction;
 	
 	public Subgame (){

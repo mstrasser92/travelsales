@@ -69,6 +69,19 @@ public class TestDB {
 		game3.addLevel(level3);
 		
 		HibernateSupport.beginTransaction();
+		
+		node1.saveToDB();
+		node2.saveToDB();
+		node3.saveToDB();
+		node4.saveToDB();
+		node5.saveToDB();
+		node6.saveToDB();
+		subgame1.saveToDB();
+		subgame2.saveToDB();
+		subgame3.saveToDB();
+		level1.saveToDB();
+		level2.saveToDB();
+		level3.saveToDB();
 		game1.saveToDB();
 		game2.saveToDB();
 		game3.saveToDB();
