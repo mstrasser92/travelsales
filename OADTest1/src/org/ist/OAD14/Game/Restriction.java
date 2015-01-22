@@ -10,6 +10,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.ist.OAD14.General.Interface.ISaveAndDelete;
 import org.ist.OAD14.Support.HibernateSupport;
 
@@ -23,7 +24,8 @@ public class Restriction implements ISaveAndDelete, Serializable {
 	private static final long serialVersionUID = 1653558825414285076L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.TABLE)
+	@GenericGenerator(name="generator", strategy="increment")
+	@GeneratedValue(generator="generator")
 	protected int restrictionID;
 
 	@ManyToOne

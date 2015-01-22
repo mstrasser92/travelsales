@@ -43,11 +43,11 @@ public class GameList extends HttpServlet {
 		
 		//DEBUG
 		/*
-		Game game = new Game(2983742, "Super-duper-game", current_user, "public");
-		Game game2 = new Game(1234, "Best game ever", current_user, "private");
-		Level level1 = new Level(145);
-		Level level2 = new Level(567);
-		Subgame subgame1 = new Subgame(489);
+		Game game = new Game("Super-duper-game", current_user, "public");
+		Game game2 = new Game("Best game ever", current_user, "private");
+		Level level1 = new Level();
+		Level level2 = new Level();
+		Subgame subgame1 = new Subgame();
 		Node node1 = new Node(34,56);
 		subgame1.addNode(node1);
 		level1.addSubgame(subgame1);
@@ -91,7 +91,10 @@ public class GameList extends HttpServlet {
 		// TODO Auto-generated method stub
 		String currentGameID = request.getParameter("gameID");
 		String userId = request.getParameter("id");
-		response.sendRedirect("SubGameList?id="+userId+"&gameID="+ currentGameID+"&levelID=0");
+		String levelID = "0";
+		response.sendRedirect("SubGameList?id="+userId+"&gameID="+ currentGameID+"&levelID=-1");
+
+
 		
 	}
 

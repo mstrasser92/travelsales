@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.ist.OAD14.General.Interface.ISaveAndDelete;
 import org.ist.OAD14.Support.HibernateSupport;
 
@@ -21,7 +22,8 @@ import org.ist.OAD14.Support.HibernateSupport;
 public abstract class User implements ISaveAndDelete{
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.TABLE)
+	@GenericGenerator(name="generator", strategy="increment")
+	@GeneratedValue(generator="generator")
 	protected int userID;
 	
 	protected String username;

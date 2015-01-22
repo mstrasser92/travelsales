@@ -53,7 +53,7 @@ public class SubGameList extends HttpServlet {
 		Level current_level = new Level();
 		
 		if (levels.size() != 0){
-			if (Integer.parseInt(levelID) == 0){	
+			if (Integer.parseInt(levelID) == -1){	
 				current_level = current_game.getLevels().get(0);
 			}
 			else{
@@ -62,9 +62,10 @@ public class SubGameList extends HttpServlet {
 		}
 	//TODO what if there is no level?	
 	
+		/*
 		List<Criterion> criterions = new ArrayList<Criterion>();
 		criterions.add(Restrictions.eq("levels", "public"));
-		
+		*/
 
 		
 		/*

@@ -11,6 +11,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.ist.OAD14.General.Interface.ISaveAndDelete;
 import org.ist.OAD14.Support.HibernateSupport;
 import org.ist.OAD14.User.User;
@@ -25,7 +26,8 @@ public class Game implements ISaveAndDelete, Serializable {
 	private static final long serialVersionUID = -8941087165718929979L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.TABLE)
+	@GenericGenerator(name="generator", strategy="increment")
+	@GeneratedValue(generator="generator")
 	protected int gameID;
 	
 	@ManyToOne
@@ -46,6 +48,11 @@ public class Game implements ISaveAndDelete, Serializable {
 		this.author = author;
 		this.visibility = visibility;
 		this.levels = new ArrayList<Level>();
+	}
+	
+	public Game()
+	{
+		
 	}
 		
 	public int getGameID() {

@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.ist.OAD14.General.Interface.ISaveAndDelete;
 import org.ist.OAD14.Support.HibernateSupport;
 
@@ -23,7 +24,8 @@ public class Subgame implements ISaveAndDelete, Serializable {
 	private static final long serialVersionUID = -3827928826051196223L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.TABLE)
+	@GenericGenerator(name="generator", strategy="increment")
+	@GeneratedValue(generator="generator")
 	protected int subgameID;
 	
 	private ArrayList<Node> nodes;

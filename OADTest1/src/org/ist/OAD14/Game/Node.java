@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.ist.OAD14.General.Interface.ISaveAndDelete;
 import org.ist.OAD14.Support.HibernateSupport;
 
@@ -22,7 +23,8 @@ public class Node implements ISaveAndDelete, Serializable {
 	private static final long serialVersionUID = -9043664600947941536L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.TABLE)
+	@GenericGenerator(name="generator", strategy="increment")
+	@GeneratedValue(generator="generator")
 	protected int nodeID;
 	
 	private float coordX;

@@ -25,6 +25,7 @@ public class TestDB {
 		userB.saveToDB();
 		HibernateSupport.commitTransaction();
 		
+		
 		// create 5 basic games
 		Node node1 = new Node(12,45);
 		Node node2 = new Node(23,35);
