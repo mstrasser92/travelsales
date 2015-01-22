@@ -1,13 +1,10 @@
 package org.ist.OAD14.Servlet;
 
 import java.io.IOException;
-<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
-=======
->>>>>>> master
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,14 +12,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-<<<<<<< HEAD
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 import org.ist.OAD14.Game.Game;
 import org.ist.OAD14.Game.Level;
 import org.ist.OAD14.Game.Subgame;
-=======
->>>>>>> master
 import org.ist.OAD14.Support.HibernateSupport;
 import org.ist.OAD14.User.User;
 
@@ -46,7 +40,6 @@ public class SubGameList extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("SubGameList entered");
-<<<<<<< HEAD
 		
 
 		String userID = request.getParameter("id");
@@ -111,9 +104,6 @@ public class SubGameList extends HttpServlet {
 		request.getRequestDispatcher("subGameList.jsp").include(request, response);
 		
 		
-=======
-		request.getRequestDispatcher("SubgameList.jsp").include(request, response);
->>>>>>> master
 	}
 
 	/**

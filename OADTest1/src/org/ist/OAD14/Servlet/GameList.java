@@ -10,13 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-<<<<<<< HEAD
 import org.hibernate.Session;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 import org.ist.OAD14.Game.*;
-=======
->>>>>>> master
 import org.ist.OAD14.Support.HibernateSupport;
 import org.ist.OAD14.User.User;
 
@@ -26,13 +23,6 @@ import org.ist.OAD14.User.User;
 @WebServlet("/GameList")
 public class GameList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	private String userId;
-	
-	public String getUserId()
-	{
-		return userId;
-	}
  
     /**
      * @see HttpServlet#HttpServlet()
@@ -46,11 +36,12 @@ public class GameList extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-<<<<<<< HEAD
+		
 		
 		
 		String userId = request.getParameter("id");
 		User current_user = HibernateSupport.readOneObjectByID(User.class, Integer.parseInt(userId));
+		
 		
 		//DEBUG
 		/*
@@ -87,26 +78,13 @@ public class GameList extends HttpServlet {
 		//visible_games.add(game2); //DEBUG
 		
 		request.setAttribute("visible_games", visible_games);
+		request.setAttribute("user", current_user);
 		request.getRequestDispatcher("gameList.jsp").include(request, response);
 		return;
 		
 		//int num_games = ( (Integer) HibernateSupport.getCurrentSession().createQuery("select count(*) from Game").iterate().next() ).intValue();
 		//for (int i = 0; i < num_games; i++){	
 		//}
-=======
-		userId = request.getParameter("id");
-
-		User user = HibernateSupport.readOneObjectByID(User.class, Integer.parseInt(userId));
-		
-		if(user != null){
-			request.setAttribute("user", user);
-			request.getRequestDispatcher("gameList.jsp").include(request, response);
-			return;
-		} else {
-			request.getRequestDispatcher("index.jsp").include(request, response);
-			return;
-		}
->>>>>>> master
 	}
 
 	/**

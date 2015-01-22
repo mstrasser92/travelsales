@@ -1,27 +1,20 @@
-<<<<<<< HEAD
 <%@page import="org.ist.OAD14.Game.Game"%>
 <%@page import="java.util.*"%>
-=======
 <%@page import="org.ist.OAD14.User.CreatorUser"%>
 <%@page import="org.ist.OAD14.User.User"%>
->>>>>>> master
 <!--<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.List" %>
   
 <%
  User user = (User)request.getAttribute("user");
  String errorMessage = (String)request.getAttribute("errorMessage");
-<<<<<<< HEAD
  List<Game> games = (List<Game>)request.getAttribute("visible_games");
  
- 
-=======
  String id = (String)request.getParameter("id");
  String fbsent = "none";
  if(request.getParameter("feedbacksend")!= null)
 	 fbsent = "inline";
 	 
->>>>>>> master
 %>-->
 <!DOCTYPE html>
 <html>
@@ -143,7 +136,6 @@
             <img src="img/new_game_btn.png" alt="New Game" />
           </a>
         </li>
-<<<<<<< HEAD
         
 
         <%
@@ -152,7 +144,7 @@
 	        	<form method="post">
 	        	<li>
 		          <h2><%=games.get(i).getName() %></h2>
-		          <input type="image" src="img/game_btn.png" alt="Submit Form" />
+		          <input type="image" name="game" src="img/game_btn.png" alt="Submit Form" />
 		          <p>From <%=games.get(0).getAuthor().getUsername() %></p>
 		        </li>
 		        <input type="hidden" name="gameID" value="<%=games.get(i).getGameID()%>">
@@ -162,50 +154,6 @@
 		 %>
 		 
 	            
-=======
-        <li>
-          <h2>Game 1</h2>
-          <a name="game" href="subGameList.jsp?id=<%= id %>" title="Game 1">
-            <img src="img/game_btn.png" alt="Game" />
-          </a>
-          <p>From username</p>
-        </li>
-        <li>
-         <h2>Game 2</h2>
-          <a name="game" href="#" title="Game 2">
-            <img src="img/game_btn.png" alt="Game" />
-          </a>
-          <p>From username</p>
-        </li>
-        <li>
-          <h2>Game 3</h2>
-          <a name="game" href="#" title="Game 3">
-            <img src="img/game_btn.png" alt="Game" />
-          </a>
-          <p>From username</p>
-        </li>
-        <li>
-          <h2>Game 4</h2>
-          <a name="game" href="#" title="Game 4">
-            <img src="img/game_btn.png" alt="Game" />
-          </a>
-          <p>From username</p>
-        </li>
-        <li>
-          <h2>Game 5</h2>
-          <a name="game" href="#" title="Game 5">
-            <img src="img/game_btn.png" alt="Game" />
-          </a>
-          <p>From username</p>
-        </li>
-        <li>
-          <h2>Game 6</h2>
-          <a name="game" href="#" title="Game 6">
-            <img src="img/game_btn.png" alt="Game" />
-          </a>
-          <p>From username</p>
-        </li>
->>>>>>> master
       </ul>
     </div>
   </div>
