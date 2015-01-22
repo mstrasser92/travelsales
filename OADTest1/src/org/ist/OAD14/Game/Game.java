@@ -3,12 +3,14 @@ package org.ist.OAD14.Game;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.GenericGenerator;
@@ -32,10 +34,14 @@ public class Game implements ISaveAndDelete, Serializable {
 	
 	@ManyToOne
 	private User author;
+	
 	private String name;
-	private ArrayList<Level> levels;
 	private String visibility;
 	//private Evaluation evaluation;
+	
+	@Lob
+	private ArrayList<Level> levels;
+
 	
 	// public int createGame() ??
 	// public int editGame(Game game) ??
