@@ -1,20 +1,20 @@
-// www.jjam.de - Kontextmenü mit JavaScript - Version 15.12.2002
+// www.jjam.de - Kontextmenï¿½ mit JavaScript - Version 15.12.2002
 
-// Nur für IE 5+ und NN 6+
+// Nur fï¿½r IE 5+ und NN 6+
 ie5=(document.getElementById && document.all && document.styleSheets)?1:0;
 nn6=(document.getElementById && !document.all)?1:0;
 
-// Kontextmenü initialisieren
+// Kontextmenï¿½ initialisieren
 if (ie5 || nn6) {
 	menuWidth = 180;
 	menuHeight = 120;
 	menuStatus=0; 
-	// Rechter Mausklick: Menü anzeigen, linker Mausklick: Menü verstecken
+	// Rechter Mausklick: Menï¿½ anzeigen, linker Mausklick: Menï¿½ verstecken
 	document.oncontextmenu=showMenu; //oncontextmenu geht nicht bei NN 6.01
 	document.onmouseup=hideMenu;
 }
 
-// Kontextmenü anzeigen
+// Kontextmenï¿½ anzeigen
 function showMenu(e) {
 	menuWidth = document.getElementById("menu").clientWidth;
 	menuHeight = document.getElementById("menu").clientHeight;
@@ -37,7 +37,7 @@ function showMenu(e) {
 	return false;
 }
 
-// Kontextmenü verstecken
+// Kontextmenï¿½ verstecken
 function hideMenu(e) {
 	if (menuStatus==1 && ((ie5 && event.button==1) || (nn6 && e.which==1))) {
 		document.getElementById("menu").style.display = "none";
@@ -55,6 +55,7 @@ $(function() {
 		    	$('.gamemenu').css('display', 'inline');
 		    	$('.nongame').css('display', 'none');
 		    	document.getElementById("gamename").value= this.title;
+		    	document.getElementById("gameDeletionId").value= this.title;
 	    	} else {
 	    		$('.gamemenu').css('display', 'none');
 	    		$('.nongame').css('display', 'inline');
@@ -75,7 +76,7 @@ function viewSource() {
 	var w=window.open("view-source:"+window.location,'','resizable=1,scrollbars=1');
 }
 
-// Seite in neuem Fenster öffnen
+// Seite in neuem Fenster ï¿½ffnen
 function openFrameInNewWindow() {
 	var w=window.open(window.location,'','resizable=1,scrollbars=1,status=1,location=1,menubar=1,toolbar=1');
 }
