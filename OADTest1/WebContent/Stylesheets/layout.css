@@ -66,8 +66,95 @@ input[type=submit] {
   width: 960px;
   height: 540px;
   background: url("../img/wrapper_bg.jpg") no-repeat;
+  -webkit-background-size: cover; /* For WebKit*/
+  -moz-background-size: cover;    /* Mozilla*/
+  -o-background-size: cover;      /* Opera*/
+  background-size: cover; 
   margin-left: auto;
   margin-right: auto;
+}
+
+
+a.menu 
+{
+	text-decoration:none;
+	font-family:Verdana,Arial;
+	font-size:80%;
+	width: 100%;
+}
+
+a.menu:link,a.menu:visited 
+{
+	text-decoration:none;
+	color:#F0F8FF;
+}
+
+a.menu:hover,a.menu:active 
+{
+	text-decoration:none;
+	background-color:#F0F8FF;
+	color:#000040
+}
+
+hr.menu 
+{
+	border:0px;
+	height:1px;
+	background-color:#B0C4DE;
+	color:#B0C4DE;
+}
+
+div#menu
+{
+	display: none;
+	position:absolute;
+	padding: 10px;
+	top:100px;
+	left:100px;
+	z-index:100;
+}
+
+table#contextmenu
+{
+	border-style:outset;
+	border-width:1;
+	border-color:#3a6c96;
+	background-color:#4682B4;
+	height: 80px;
+	width: 220px;
+}
+
+tr.nongame
+{
+	display:inline;
+	width: 100%;
+}
+
+tr.gamemenu
+{
+	display: none;
+	width: 100%;
+}
+
+div.overlay
+{
+  	background: url("../img/preferences_field.png") no-repeat;
+  	background-size: 569px 300px;
+  	display: none;
+  	padding: 35px;
+  	height: 301px;
+  	width: 569px;
+  	position: fixed;
+  	top: 50%;
+  	left: 50%;
+  	transform: translate(-50%, -50%);
+	z-index:100;
+}
+
+input#gamename 
+{
+	width: 70%;
+	background:transparent;
 }
 
 /* ************************************
@@ -271,6 +358,7 @@ nav  li {
   display: block;
 }
 
+
 #rate{
   position: relative;
   clear: both;
@@ -281,13 +369,13 @@ nav  li {
 }
 
 #rate ul {
-  margin-left: 150px;
-  margin-right: 70px;
+  margin-left: 40px;
+  margin-right: 0px;
 }
 
 .average {
   position: relative;
-  left: 90px; 
+  left: 70px; 
 }
 
 #rate ul li:first-child {
@@ -326,7 +414,7 @@ nav  li {
 }
 
 .showGames span.first {
-  margin-left: 170px;
+  margin-left: 180px;
 }
 
 span a {
@@ -334,7 +422,7 @@ span a {
 }
 
 .showGames ul.config {
-  margin-left: 300px;
+  margin-left: 250px;
 }
 
 .showGames ul li {
@@ -344,7 +432,20 @@ span a {
   margin-bottom: 30px;
 }
 
+.showGames ul.config li {
+	margin-left: 0px;
+	margin-bottom: -10px;
+	color: white;
+}
 
+.levelbtn
+{
+	background-image: url("../img/level_btn.png");
+	background-repeat: no-repeat;
+	background-position: 0px -12px;
+	height: 62px;
+	width: 62px;
+}
 
 
 

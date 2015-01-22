@@ -12,9 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
-import org.ist.OAD14.General.Comment;
 import org.ist.OAD14.Support.HibernateSupport;
-import org.ist.OAD14.User.CreatorUser;
 import org.ist.OAD14.User.User;
 
 /**

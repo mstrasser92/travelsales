@@ -34,9 +34,14 @@ public class Game implements ISaveAndDelete, Serializable {
 	
 	@ManyToOne
 	private User author;
+<<<<<<< HEAD
 	
 	private String name;
 	private String visibility;
+=======
+	private ArrayList<Level> levels;
+	
+>>>>>>> master
 	//private Evaluation evaluation;
 	
 	@Lob

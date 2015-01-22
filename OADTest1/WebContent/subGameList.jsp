@@ -6,10 +6,14 @@
     
 <%
  String errorMessage = (String)request.getAttribute("errorMessage");
+<<<<<<< HEAD
  List<Level> levels = (List<Level>)request.getAttribute("levels");
  List<Subgame> subgames = (List<Subgame>)request.getAttribute("subgames");
  Level current_level = (Level)request.getAttribute("current_level");
  
+=======
+ String id = (String)request.getParameter("id");
+>>>>>>> master
 %>-->
 <!DOCTYPE html>
 <html>
@@ -18,6 +22,7 @@
 
   <link rel="stylesheet" type="text/css" href="Stylesheets/layout.css" />
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="contextMenu.js"></script>
   
   <title>Levels and Subgames</title>
   <!--[if lt IE 9]>
@@ -25,9 +30,20 @@
   <![endif]-->
 </head>
 <body>
+
+<div id="menu">
+	<table id="contextmenu" cellpadding="5" cellspacing="0">
+		<tr class="nongame"><td><a class='menu'  href="subGameList.jsp?id=<%= id %>" onclick="">&nbsp;&nbsp;New Game</a></td></tr>
+		<tr class="gamemenu"><td><a class='menu'  href="subGameList.jsp?id=<%= id %>" onclick="">&nbsp;&nbsp;Play&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td></tr>
+		<tr class="gamemenu"><td><a class='menu'  href="javascript:void(0)" onclick=""">&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td></tr>
+		<tr class="gamemenu"><td><hr class='menu'><a class='menu' href='javascript:void(0)'>&nbsp;&nbsp;Delete</a></td></tr>
+		<tr><td><hr class='menu'><a class="menu" href="javascript:void(0)" onclick="document.getElementById('giveFeedback').style.display = 'inline';">&nbsp;&nbsp;Give Feedback&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td></tr>
+	</table>
+</div>
+
   <div id="wrapper">
     <header>
-      <a href="index.jsp" title="Travel Sales">
+      <a href="GameList?id=<%=id%>" title="Travel Sales">
         <div id="logo">
           <img src="img/logo.png" alt="Logo" />
         </div>
@@ -35,7 +51,7 @@
       <nav>
         <ul>
           <li>
-            <a href="#" title="Show Games">
+            <a href="GameList?id=<%=id%>" title="Show Games">
               <img src="img/show_games_btn.png" alt="Show Games"" />
             </a>
           </li>
@@ -64,6 +80,7 @@
     </header>
     <div class="showGames" id="content">
       <ul class="config">
+<<<<<<< HEAD
         
          <%
          	if (levels.size() != 0){
@@ -86,6 +103,20 @@
 	     </li>
 		 	
         
+=======
+        <li style="color: black">
+          Level: 
+        </li>
+        <li class="levelbtn">
+          1 
+        </li>
+        <li class="levelbtn">
+          2 
+        </li>
+        <li class="levelbtn">
+          3 
+        </li>
+>>>>>>> master
       </ul>
       <span class="first">
         <a href="#" title="Public">
@@ -100,6 +131,7 @@
       <br />
       <ul>
         <li>
+<<<<<<< HEAD
           <h2>New Subgame</h2>
           <a href="#" title="New Game">
             <img src="img/new_game_btn.png" alt="New Game" />
@@ -121,6 +153,55 @@
 	    	}
 		 %>
 
+=======
+          <h2>New Game</h2>
+          <a href="GameEditor?id=<%= id %>" title="New Game">
+            <img src="img/new_game_btn.png" alt="New Game" />
+          </a>
+        </li>
+        <li>
+          <h2>Game 1</h2>
+          <a name="game" href="game1.jsp?id=<%= id %>" title="Add Game">
+            <img src="img/game_btn.png" alt="Game" />
+          </a>
+          <p>From username</p>
+        </li>
+        <li>
+         <h2>Game 2</h2>
+          <a name="game" href="#" title="Add Game">
+            <img src="img/game_btn.png" alt="Game" />
+          </a>
+          <p>From username</p>
+        </li>
+        <li>
+          <h2>Game 3</h2>
+          <a name="game" href="#" title="Add Game">
+            <img src="img/game_btn.png" alt="Game" />
+          </a>
+          <p>From username</p>
+        </li>
+        <li>
+          <h2>Game 4</h2>
+          <a name="game" href="#" title="Add Game">
+            <img src="img/game_btn.png" alt="Game" />
+          </a>
+          <p>From username</p>
+        </li>
+        <li>
+          <h2>Game 5</h2>
+          <a name="game" href="#" title="Add Game">
+            <img src="img/game_btn.png" alt="Game" />
+          </a>
+          <p>From username</p>
+        </li>
+        <li>
+          <h2>Game 6</h2>
+          <a name="game" href="#" title="Add Game">
+            <img src="img/game_btn.png" alt="Game" />
+          </a>
+          <p>From username</p>
+        </li>
+>>>>>>> master
       </ul>
     </div>
   </div>
