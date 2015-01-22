@@ -30,6 +30,8 @@ public class Node implements ISaveAndDelete, Serializable {
 	private float coordX;
 	private float coordY;
 	
+	protected int subgameID;
+	
 	public Node(float x, float y){
 		this.coordX = x;
 		this.coordY = y;
@@ -57,6 +59,14 @@ public class Node implements ISaveAndDelete, Serializable {
 	
 	public void setCoordY(float y){
 		coordY = y;
+	}
+	
+	public int getSubgameID() {
+		return subgameID;
+	}
+
+	public void setSubgameID(int subgameID) {
+		this.subgameID = subgameID;
 	}
 	
 	@Override

@@ -60,7 +60,7 @@ public class SubGameList extends HttpServlet {
 		
 		if (levels.size() != 0){
 			if (Integer.parseInt(levelID) == -1){	
-				current_level = current_game.getLevels().get(0);
+				current_level = levels.get(0);
 			}
 			else{
 				current_level = HibernateSupport.readOneObjectByID(Level.class, Integer.parseInt(levelID));
@@ -117,10 +117,9 @@ public class SubGameList extends HttpServlet {
 		String userId = request.getParameter("id");
 
 		response.sendRedirect("SubGameList?id="+userId+"&gameID="+ currentGameID+"&levelID="+currentLevelID);
-
-
-		
 		
 	}
+	
+	
 
 }

@@ -71,7 +71,7 @@
 		        	%>
 		        	<form method="post">
 		        	<li>
-			          <input type="submit" value="<%=i %>" />
+			          <input type="button" value="<%=i %>" />
 			        </li>
 			        <input type="hidden" name="levelID" value="<%=levels.get(i-1).getLevelID()%>">
 			        </form>
@@ -105,8 +105,7 @@
             <img src="img/new_game_btn.png" alt="New Game" />
           </a>
         </li>
-        
-               
+           
         <%
         	for (int i = 1; i <= subgames.size(); i++) {
 	        	%>

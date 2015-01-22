@@ -28,6 +28,8 @@ public class Restriction implements ISaveAndDelete, Serializable {
 	@GeneratedValue(generator="generator")
 	protected int restrictionID;
 
+	protected int subgameID;
+	
 	@ManyToOne
 	private Node nodeA;
 	
@@ -72,6 +74,14 @@ public class Restriction implements ISaveAndDelete, Serializable {
 		restriction = restr;
 	}
 	
+	public int getSubgameID() {
+		return subgameID;
+	}
+
+	public void setSubgameID(int subgameID) {
+		this.subgameID = subgameID;
+	}
+	
 	@Override
 	public boolean saveToDB() {
 		if(!HibernateSupport.commit(this))
@@ -83,4 +93,6 @@ public class Restriction implements ISaveAndDelete, Serializable {
 	public void deleteFromDB() {
 		HibernateSupport.deleteObject(this);
 	}
+
+
 }
