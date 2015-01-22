@@ -20,6 +20,7 @@
   <link rel="stylesheet" type="text/css" href="Stylesheets/layout.css" />
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="contextMenu.js"></script>
+  <script src="main.js"></script>
   <title>Show Games</title>
   <!--[if lt IE 9]>
   <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -32,7 +33,7 @@
 		<tr class="nongame"><td><a class='menu'  href="subGameList.jsp?id=<%= id %>" onclick="">&nbsp;&nbsp;New Game</a></td></tr>
 		<tr class="gamemenu"><td><a class='menu'  href="subGameList.jsp?id=<%= id %>" onclick="">&nbsp;&nbsp;Play</a></td></tr>
 		<tr class="gamemenu"><td><a class='menu'  href="javascript:void(0)" onclick="document.getElementById('gamePreferences').style.display = 'inline';">&nbsp;&nbsp;Properties&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td></tr>
-		<tr class="gamemenu"><td><hr class='menu'><a class='menu' href='javascript:void(0)'>&nbsp;&nbsp;Delete</a></td></tr>
+		<tr class="gamemenu"><td><hr class='menu'><form name="deleteGame" method="post"><a href="javascript:void(0)" onclick="deleteGame.submit();">Delete</a><input id="gameDeletionId" type="hidden" value="" /></form></td></tr>
 		<tr><td><hr class='menu'><a class="menu" href="javascript:void(0)" onclick="document.getElementById('giveFeedback').style.display = 'inline';">&nbsp;&nbsp;Give Feedback</a></td></tr>
 	</table>
 </div>
@@ -92,6 +93,13 @@
       </a>
       <nav>
         <ul>
+          <% if(user.getUserID() == 1){ %>
+              <li>
+                <a href="javascript:void(0)" onclick="return popup('UserList');" title="User">
+                  <img src="img/user_btn.png" alt="Favorites" />
+                </a>
+              </li>
+            <% } %>
           <li>
             <a href="#" title="Favorites">
               <img src="img/favorites_btn.png" alt="Favorites" />
