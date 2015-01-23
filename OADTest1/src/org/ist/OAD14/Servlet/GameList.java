@@ -39,6 +39,47 @@ public class GameList extends HttpServlet {
 		
 		System.out.println("GameList Beginning");
 		
+		String action = "";
+		if(request.getParameter("action") != null)
+		{
+			action = request.getParameter("action");
+		}
+		
+		if(action.equals("preferences"))
+		{
+			System.out.println("Found argument preferences");
+			int gameId = Integer.parseInt(request.getParameter("gameId"));			
+			Game gameToUpdate = HibernateSupport.readOneObjectByID(Game.class, gameId);
+			gameToUpdate.setName(request.getParameter("gameName"));
+			
+			System.out.println("Got game set up to save with params: " + String.valueOf(gameId) + " name:" + request.getParameter("gameName"));
+			HibernateSupport.beginTransaction();
+				gameToUpdate.saveToDB();
+			HibernateSupport.commitTransaction();
+		}
+		
+		if(action.equals("delete"))
+		{
+			System.out.println("Found argument delete");
+			int gameDeletionId = Integer.parseInt(request.getParameter("gameDeletionId"));
+			Game gameToDelete = HibernateSupport.readOneObjectByID(Game.class, gameDeletionId);
+			HibernateSupport.beginTransaction();
+				gameToDelete.deleteFromDB();
+			HibernateSupport.commitTransaction();
+			System.out.println("Game deleted");
+		}
+		
+		if(action.equals("newGame"))
+		{
+			System.out.println("Found argument newGame");
+			int gameDeletionId = Integer.parseInt(request.getParameter("gameDeletionId"));
+			Game gameToDelete = HibernateSupport.readOneObjectByID(Game.class, gameDeletionId);
+			HibernateSupport.beginTransaction();
+				gameToDelete.deleteFromDB();
+			HibernateSupport.commitTransaction();
+			System.out.println("Game deleted");
+		}
+		
 		String userId = request.getParameter("id");
 		User current_user = HibernateSupport.readOneObjectByID(User.class, Integer.parseInt(userId));
 		
@@ -99,7 +140,6 @@ public class GameList extends HttpServlet {
 		String userId = request.getParameter("id");
 		//String levelID = "0";
 		response.sendRedirect("SubGameList?id="+userId+"&gameID="+ currentGameID+"&levelID=-1");
-
 		System.out.println("GameList doPost End");
 		
 	}

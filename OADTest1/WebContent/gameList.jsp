@@ -37,12 +37,25 @@
 
 
 <div id="menu">
-	<form method="post">
+
 		<table id="contextmenu" cellpadding="5" cellspacing="0" style="">    
-			<tr class="nongame"><td><a class='menu'  href="GameEditor?id=<%= id %>" onclick="">&nbsp;&nbsp;New Game</a></td></tr>
+			<tr class="nongame"><td>
+				<form name="newGame">
+					<input type="hidden" id="useridhidden" name="id" value="<%= id %>">
+					<input id="action" name="action" type="hidden" value="newGame" />
+					<a class='menu'  href="javascript:void(0)" onclick="newGame.submit();">&nbsp;&nbsp;New Game</a>
+				</form>	
+			</td></tr>
 			<tr class="gamemenu"><td><a class='menu'  href="subGameList?id=<%= id %>" onclick="">&nbsp;&nbsp;Play</a></td></tr>
 			<tr class="gamemenu"><td><a class='menu'  href="javascript:void(0)" onclick="document.getElementById('gamePreferences').style.display = 'inline';">&nbsp;&nbsp;Properties&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td></tr>
-			<tr class="gamemenu"><td><hr class='menu'><form name="deleteGame" method="post"><a href="javascript:void(0)" onclick="deleteGame.submit();">Delete</a><input id="gameDeletionId" type="hidden" value="" /></form></td></tr>
+			<tr class="gamemenu"><td><hr class='menu'>
+				<form name="deleteGame">
+					<input id="gameDeletionId" name="gameDeletionId" type="hidden" />
+					<input type="hidden" id="useridhidden" name="id" value="<%= id %>">
+					<input id="action" name="action" type="hidden" value="delete" />
+					<a class="menu" href="javascript:void(0)" onclick="deleteGame.submit();">&nbsp;&nbsp;Delete</a>
+				</form></td>
+			</tr>
 			<tr><td><hr class='menu'><a class="menu" href="javascript:void(0)" onclick="document.getElementById('giveFeedback').style.display = 'inline';">&nbsp;&nbsp;Give Feedback</a></td></tr>
 			
 			<!-- TODO: identify gameID of game that you right clicked on -- this will then be submitted to the doPost function of GameList.java-->
@@ -50,7 +63,7 @@
 	    	
 	    
 		</table>
-	</form>
+
 </div>
 
 
@@ -71,24 +84,25 @@
 <div id="gamePreferences" class="overlay">
 	<h2>Preferences</h2>
 	<br>
-	<form name="gamePreferences" action="" method="get">
-			<input type="hidden" name="action" value="preferences"> 
-			<input type="hidden" id="useridhidden" name="id" value="<%= id %>">
-			<div>Name:&nbsp;<input type="text" id="gamename" value=""></div>
-		   	<div>Logo:
-		   	<a href="javascript:void(0)" onclick="sendFeedback.submit(); clicked=0;">
-		   		<img style="align: left;margin-top: 10px; margin-left: 10px" src="img/select_btn.png" alt="Select" height="29" width="171"/></a>
-		   	<img style="position:absolute; margin-left:60px;" src="img/bg_placeholder.png" alt="Logo" height="100" width="100"/></a>
-		   	<br>
-		   	<a href="javascript:void(0)" onclick="document.getElementById('gamePreferences').style.display = 'none'; clicked=0;">
-				<img style="margin-top: 0px; margin-left: 81px;" src="img/upload_btn.png" alt="Upload" height="29" width="171"/></a>
-   			
-   			</div>
-   			<div align="center">
-			<a href="javascript:void(0)" style="align: center;"onclick="document.getElementById('gamePreferences').style.display = 'none'">
-   			<br>
-   			<img style="margin-right: 80px;"src="img/save_btn_small.png" alt="Save" height="29" width="171"/></a>
-   			</div>
+	<form name="gamePreferences">
+		<input type="hidden" name="action" value="preferences"> 
+		<input type="hidden" id="useridhidden" name="id" value="<%= id %>">
+		<input type="hidden" id="gameId" name="gameId" value="-1">
+		<div>Name:&nbsp;<input type="text" id="gameName" name="gameName"></div>
+	   	<div>Logo:
+	   	<a href="javascript:void(0)" onclick="clicked=0;">
+	   		<img style="align: left;margin-top: 10px; margin-left: 10px" src="img/select_btn.png" alt="Select" height="29" width="171"/></a>
+	   	<img style="position:absolute; margin-left:60px;" src="img/bg_placeholder.png" alt="Logo" height="100" width="100"/></a>
+	   	<br>
+	   	<a href="javascript:void(0)" onclick="document.getElementById('gamePreferences').style.display = 'none'; clicked=0;">
+			<img style="margin-top: 0px; margin-left: 81px;" src="img/upload_btn.png" alt="Upload" height="29" width="171"/></a>
+  			
+		</div>
+		<div align="center">
+		<a href="javascript:void(0)" style="align: center;"onclick="gamePreferences.submit();">
+  			<br>
+  			<img style="margin-right: 80px;"src="img/save_btn_small.png" alt="Save" height="29" width="171"/></a>
+   		</div>
 	</form>
 </div>
 
@@ -155,7 +169,7 @@
 	        	<form method="post">
 	        	<li>
 		          <h2><%=games.get(i).getName() %></h2>
-		          <input type="image" title="<%=games.get(i).getName() %>" name="game" src="img/game_btn.png" alt="Submit Form" />
+		          <input id="<%=games.get(i).getGameID()%>" type="image" title="<%=games.get(i).getName() %>" name="game" src="img/game_btn.png" alt="Submit Form" />
 		          <p>From <%=games.get(0).getAuthor().getUsername() %></p>
 		        </li>
 		        <input type="hidden" name="gameID" value="<%=games.get(i).getGameID()%>">

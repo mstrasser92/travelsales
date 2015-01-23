@@ -54,8 +54,9 @@ $(function() {
 		    	clickedongame = 1;
 		    	$('.gamemenu').css('display', 'inline');
 		    	$('.nongame').css('display', 'none');
-		    	document.getElementById("gamename").value= this.title;
-		    	document.getElementById("gameDeletionId").value= this.title;
+		    	document.getElementById("gameName").value= this.title;
+		    	document.getElementById("gameDeletionId").value= this.id;
+		    	document.getElementById("gameId").value= this.id;
 	    	} else {
 	    		$('.gamemenu').css('display', 'none');
 	    		$('.nongame').css('display', 'inline');
