@@ -48,7 +48,7 @@ function hideMenu(e) {
 
 // Erkennen was geklickt wurde
 $(function() {
-		$('div').on('contextmenu', 'a', function(e){
+		$('div').on('contextmenu', 'input', function(e){
 		    if(this.name == "game")
 	    	{
 		    	clickedongame = 1;
