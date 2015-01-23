@@ -1,6 +1,7 @@
 package org.ist.OAD14.Servlet;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,6 +35,9 @@ public class EvaluateGame extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		System.out.println("EvaluateGame doPost Beginning");		
+		int rating = Integer.parseInt(request.getParameter("stars"));
+		System.out.println("EvaluateGame doPost Ending");	
 	}
 
 }

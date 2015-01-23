@@ -1,4 +1,4 @@
-<!--<%@ page language="java" contentType="text/html; charset=UTF-8"
+	<!--<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>-->
 <%
  String errorMessage = (String)request.getAttribute("errorMessage");
@@ -121,34 +121,35 @@
       		<a href="javascript:void(0)" onclick="document.getElementById('notifyAdmin').style.display = 'inline';">
 			<img style="margin-left: 20px;" src="img/report_btn.png" alt="Back" height="28" width="128"/></a>
       	  </td>
-      	  <td>
+     	   <td>
 	        <ul>
 	          <li>
-	             Evaluate: 
+	             asdf: 
 	          </li>
 	          <li>
-	            <a class="star" href="#" title="1">
-	              <img src="img/star_empty.png" alt="1" />
-	            </a>
+	            <form method="post">
+		            <input type="image" id="star1" name="star1" value="1" src="img/star_empty.png" onmouseover="mouseOver(1)" onmouseout="mouseOut(1)" alt="Submit">
+		            <input type="hidden" name="rating" value="1">
+	         	</form>
 	          </li>
 	          <li>
 	            <a class="star" href="#" title="2">
-	              <img src="img/star_empty.png" alt="2" />
+	              <img id="star2" src="img/star_empty.png" alt="2" onmouseover="mouseOver(2)" onmouseout="mouseOut(2)"/>
 	            </a>
 	          </li>
 	          <li>
 	            <a class="star" href="#" title="3">
-	              <img src="img/star_empty.png" alt="3"/>
+	              <img id="star3" src="img/star_empty.png" alt="3" onmouseover="mouseOver(3)" onmouseout="mouseOut(3)"/>
 	            </a>
 	          </li>
 	          <li>
 	            <a class="star" href="#" title="4">
-	              <img src="img/star_empty.png" alt="4" />
+	              <img id="star4" src="img/star_empty.png" alt="4" onmouseover="mouseOver(4)" onmouseout="mouseOut(4)" />
 	            </a>
 	          </li>
 	          <li>
 	            <a class="star" href="#" title="5">
-	              <img src="img/star_empty.png" alt="5" />
+	              <img id="star5" src="img/star_empty.png" alt="5" onmouseover="mouseOver(5)" onmouseout="mouseOut(5)" />
 	            </a>
 	          </li>
 	        </ul>
@@ -168,5 +169,21 @@
       
     </footer>
   </div>
+  
+<script>
+function mouseOver(rating) {
+
+	for(var i = 1; i <= rating; i++){
+	document.getElementById("star"+i).setAttribute("src", "http://i.imgur.com/GytMyab.png");
+		}
+}
+
+function mouseOut(rating) {
+	for(var i = 1; i <= rating; i++){
+		document.getElementById("star"+i).setAttribute("src", "http://i.imgur.com/J66ipAt.png");
+			}
+}
+</script>
+  
 </body>
 </html> 
