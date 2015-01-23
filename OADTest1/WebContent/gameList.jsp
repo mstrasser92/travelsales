@@ -129,7 +129,8 @@
                 </a>
               </li>
             <% } %>
-          <li>
+            <!-- Commented because not needed -->
+<!--           <li>
             <a href="#" title="Favorites">
               <img src="img/favorites_btn.png" alt="Favorites" />
             </a>
@@ -143,7 +144,8 @@
             <a href="#" title="Profile">
               <img src="img/profile_btn.png" alt="Profile" />
             </a>
-          </li>
+          </li> -->
+          
           <li>
             <a href="Login" title="Logout">
               <img src="img/logout_btn.png" alt="Logout" />
@@ -173,13 +175,11 @@
 		          <p>From <%=games.get(0).getAuthor().getUsername() %></p>
 		          <input type="hidden" name="gameID" value="<%=games.get(i).getGameID()%>">
 		        </form>
-	        </li>
-		        
+	        </li>     
 		        <%
 	    	}
-		 %>
-		 
-	            
+		 %>     
+		       
       </ul>
     </div>
   </div>

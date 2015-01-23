@@ -137,8 +137,8 @@ public class GameList extends HttpServlet {
 		System.out.println("GameList doPost Beginning");
 		String currentGameID = request.getParameter("gameID");
 		String userId = request.getParameter("id");
-		//String levelID = "0";
-		response.sendRedirect("SubGameList?id="+userId+"&gameID="+ currentGameID+"&levelID=-1");
+		String levelID = "1";
+		response.sendRedirect("SubGameList?id="+userId+"&gameID="+ currentGameID+"&levelID="+levelID);
 		System.out.println("GameList doPost End");
 		
 	}
