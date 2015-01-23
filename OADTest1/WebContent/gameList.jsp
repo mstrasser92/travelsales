@@ -1,15 +1,21 @@
+<%@page import="org.ist.OAD14.Game.Game"%>
+<%@page import="java.util.*"%>
 <%@page import="org.ist.OAD14.User.CreatorUser"%>
 <%@page import="org.ist.OAD14.User.User"%>
 <!--<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
+    pageEncoding="UTF-8" import="java.util.List" %>
+  
 <%
  User user = (User)request.getAttribute("user");
  String errorMessage = (String)request.getAttribute("errorMessage");
+ List<Game> games = (List<Game>)request.getAttribute("visible_games");
+ 
  String id = (String)request.getParameter("id");
  String fbsent = "none";
  if(request.getParameter("feedbacksend")!= null)
 	 fbsent = "inline";
+ 
+ System.out.println("gameList.jsp Beginning");
 	 
 %>-->
 <!DOCTYPE html>
@@ -28,13 +34,21 @@
 </head>
 <body>
 
+
+
 <div id="menu">
 	<table id="contextmenu" cellpadding="5" cellspacing="0" style="">
-		<tr class="nongame"><td><a class='menu'  href="subGameList.jsp?id=<%= id %>" onclick="">&nbsp;&nbsp;New Game</a></td></tr>
-		<tr class="gamemenu"><td><a class='menu'  href="subGameList.jsp?id=<%= id %>" onclick="">&nbsp;&nbsp;Play</a></td></tr>
-		<tr class="gamemenu"><td><a class='menu'  href="javascript:void(0)" onclick="document.getElementById('gamePreferences').style.display = 'inline';">&nbsp;&nbsp;Properties&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td></tr>
-		<tr class="gamemenu"><td><hr class='menu'><form name="deleteGame" method="post"><a href="javascript:void(0)" onclick="deleteGame.submit();">Delete</a><input id="gameDeletionId" type="hidden" value="" /></form></td></tr>
-		<tr><td><hr class='menu'><a class="menu" href="javascript:void(0)" onclick="document.getElementById('giveFeedback').style.display = 'inline';">&nbsp;&nbsp;Give Feedback</a></td></tr>
+	    <form method="post">
+			<tr class="nongame"><td><a class='menu'  href="GameEditor?id=<%= id %>" onclick="">&nbsp;&nbsp;New Game</a></td></tr>
+			<tr class="gamemenu"><td><a class='menu'  href="subGameList?id=<%= id %>" onclick="">&nbsp;&nbsp;Play</a></td></tr>
+			<tr class="gamemenu"><td><a class='menu'  href="javascript:void(0)" onclick="document.getElementById('gamePreferences').style.display = 'inline';">&nbsp;&nbsp;Properties&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td></tr>
+			<tr class="gamemenu"><td><hr class='menu'><form name="deleteGame" method="post"><a href="javascript:void(0)" onclick="deleteGame.submit();">Delete</a><input id="gameDeletionId" type="hidden" value="" /></form></td></tr>
+			<tr><td><hr class='menu'><a class="menu" href="javascript:void(0)" onclick="document.getElementById('giveFeedback').style.display = 'inline';">&nbsp;&nbsp;Give Feedback</a></td></tr>
+			
+			<!-- TODO: identify gameID of game that you right clicked on -- this will then be submitted to the doPost function of GameList.java-->
+	    	<!--   <input type="hidden" name="gameID" value="<%=games.get(0).getGameID()%>"> -->
+	    	
+	    </form>
 	</table>
 </div>
 
@@ -132,48 +146,24 @@
             <img src="img/new_game_btn.png" alt="New Game" />
           </a>
         </li>
-        <li>
-          <h2>Game 1</h2>
-          <a name="game" href="subGameList.jsp?id=<%= id %>" title="Game 1">
-            <img src="img/game_btn.png" alt="Game" />
-          </a>
-          <p>From username</p>
-        </li>
-        <li>
-         <h2>Game 2</h2>
-          <a name="game" href="#" title="Game 2">
-            <img src="img/game_btn.png" alt="Game" />
-          </a>
-          <p>From username</p>
-        </li>
-        <li>
-          <h2>Game 3</h2>
-          <a name="game" href="#" title="Game 3">
-            <img src="img/game_btn.png" alt="Game" />
-          </a>
-          <p>From username</p>
-        </li>
-        <li>
-          <h2>Game 4</h2>
-          <a name="game" href="#" title="Game 4">
-            <img src="img/game_btn.png" alt="Game" />
-          </a>
-          <p>From username</p>
-        </li>
-        <li>
-          <h2>Game 5</h2>
-          <a name="game" href="#" title="Game 5">
-            <img src="img/game_btn.png" alt="Game" />
-          </a>
-          <p>From username</p>
-        </li>
-        <li>
-          <h2>Game 6</h2>
-          <a name="game" href="#" title="Game 6">
-            <img src="img/game_btn.png" alt="Game" />
-          </a>
-          <p>From username</p>
-        </li>
+        
+
+        <%
+        	for (int i = 0; i < games.size(); i++) {
+	        	%>
+	        	<form method="post">
+	        	<li>
+		          <h2><%=games.get(i).getName() %></h2>
+		          <input type="image" name="game" src="img/game_btn.png" alt="Submit Form" />
+		          <p>From <%=games.get(0).getAuthor().getUsername() %></p>
+		        </li>
+		        <input type="hidden" name="gameID" value="<%=games.get(i).getGameID()%>">
+		        </form>
+		        <%
+	    	}
+		 %>
+		 
+	            
       </ul>
     </div>
   </div>

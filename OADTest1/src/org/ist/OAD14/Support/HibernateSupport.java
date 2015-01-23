@@ -50,14 +50,17 @@ public class HibernateSupport {
 		configuration.addAnnotatedClass(CreatorUser.class);
 		configuration.addAnnotatedClass(Application.class);
 		configuration.addAnnotatedClass(Node.class);
-
+		configuration.addAnnotatedClass(Restriction.class);
+		configuration.addAnnotatedClass(Subgame.class);
+		configuration.addAnnotatedClass(Level.class);
+		configuration.addAnnotatedClass(Game.class);
 		
 		configuration.configure(configFile);
 		ServiceRegistry serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).buildServiceRegistry();
 		sessionFactory = configuration.buildSessionFactory(serviceRegistry);
 	}
 	
-	private static Session getCurrentSession() {
+	public static Session getCurrentSession() {
 		return sessionFactory.getCurrentSession();
 	}
 	

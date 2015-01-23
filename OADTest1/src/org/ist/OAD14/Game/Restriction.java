@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.ist.OAD14.General.Interface.ISaveAndDelete;
@@ -15,50 +16,62 @@ import org.ist.OAD14.Support.HibernateSupport;
 
 @Entity
 @Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
-public class Node implements ISaveAndDelete, Serializable {
-
+public class Restriction implements ISaveAndDelete, Serializable {
+	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -9043664600947941536L;
+	private static final long serialVersionUID = 1653558825414285076L;
 
 	@Id
 	@GenericGenerator(name="generator", strategy="increment")
 	@GeneratedValue(generator="generator")
-	protected int nodeID;
-	
-	private float coordX;
-	private float coordY;
-	
+	protected int restrictionID;
+
 	protected int subgameID;
 	
-	public Node(float x, float y){
-		this.coordX = x;
-		this.coordY = y;
+	@ManyToOne
+	private Node nodeA;
+	
+	@ManyToOne
+	private Node nodeB;
+	private String restriction;
+	
+	public Restriction(Node a, Node b, String restr){
+		this.nodeA = a;
+		this.nodeB = b;
+		this.restriction = restr;
 	}
 	
-	public int getNodeID() {
-		return nodeID;
+	public int getRestrictionID() {
+		return restrictionID;
 	}
 
-	public void setNodeID(int nodeID) {
-		this.nodeID = nodeID;
+	public void setRestrictionID(int restrictionID) {
+		this.restrictionID = restrictionID;
+	}
+	public Node getNodeA(){
+		return nodeA;
 	}
 	
-	public float getCoordX(){
-		return coordX;
+	public Node getNodeB(){
+		return nodeB;
 	}
 	
-	public float getCoordY(){
-		return coordY;
+	public String getRestriction(){
+		return restriction;
 	}
 	
-	public void setCoordX(float x){
-		coordX = x;
+	public void setNodeA(Node a){
+		nodeA = a;
 	}
 	
-	public void setCoordY(float y){
-		coordY = y;
+	public void setNodeB(Node b){
+		nodeB = b;
+	}
+	
+	public void setRestriction(String restr){
+		restriction = restr;
 	}
 	
 	public int getSubgameID() {
@@ -80,4 +93,6 @@ public class Node implements ISaveAndDelete, Serializable {
 	public void deleteFromDB() {
 		HibernateSupport.deleteObject(this);
 	}
+
+
 }

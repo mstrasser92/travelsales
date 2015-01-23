@@ -1,16 +1,45 @@
 package org.ist.OAD14.Game;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Lob;
+
+import org.hibernate.annotations.GenericGenerator;
+import org.ist.OAD14.General.Interface.ISaveAndDelete;
 import org.ist.OAD14.Support.HibernateSupport;
 
-public class Level {
+@Entity
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+public class Level implements ISaveAndDelete, Serializable {
 	
-	private int level_id;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4566535961996568242L;
+
+	@Id
+	@GenericGenerator(name="generator", strategy="increment")
+	@GeneratedValue(generator="generator")
+	protected int levelID;
+	
+	protected int gameID;
+	
+	@Lob
 	private ArrayList<Subgame> subgames;
 	
-	public Level(int id){
-		this.level_id = id;
+	public Level(){
+		this.subgames = new ArrayList<Subgame>();
+	}
+	
+	public ArrayList<Subgame> getSubgames() {
+		return subgames;
 	}
 	
 	public void addSubgame(Subgame subg){
@@ -18,26 +47,36 @@ public class Level {
 	}
 	
 	public void editSubgame(Subgame subg){
-		//TODO
+		//TODO Game Editor
 	}
 	
 	public void deleteSubgame(Subgame subg){
 		subgames.remove(subg);
 	}
 		
-	public int getLevel_id() {
-		return level_id;
+	public int getLevelID() {
+		return levelID;
 	}
-	public void setLevel_id(int level_id) {
-		this.level_id = level_id;
+	public void setLevelID(int level_id) {
+		this.levelID = level_id;
 	}
 	
+	public int getGameID() {
+		return gameID;
+	}
+
+	public void setGameID(int gameID) {
+		this.gameID = gameID;
+	}
+	
+	@Override
 	public boolean saveToDB() {
 		if(!HibernateSupport.commit(this))
 			return false;
 		return true;
 	}
 
+	@Override
 	public void deleteFromDB() {
 		HibernateSupport.deleteObject(this);
 	}

@@ -9,6 +9,7 @@ import org.ist.OAD14.General.Application.ApplicationType;
 import org.ist.OAD14.Support.HibernateSupport;
 import org.ist.OAD14.User.CreatorUser;
 import org.ist.OAD14.User.User;
+import org.ist.OAD14.Game.*;
 
 
 public class TestDB {
@@ -24,11 +25,99 @@ public class TestDB {
 		userB.saveToDB();
 		HibernateSupport.commitTransaction();
 		
+		// create 5 basic games
+		Node node1 = new Node(12,45);
+		Node node2 = new Node(23,35);
+		Node node3 = new Node(34,25);
+		Node node4 = new Node(34,15);
+		Node node5 = new Node(56,55);
+		Node node6 = new Node(67,65);
+		
+		Game game1 = new Game("Game 1", userB, "public");
+		Game game2 = new Game("Game 2", userB, "public");
+		Game game3 = new Game("Game 3", userB, "public");
+		Game game4 = new Game("Game 4", userB, "public");
+		Game game5 = new Game("Game 5", userB, "public");
+		
+		Level level1 = new Level();
+		Level level2 = new Level();
+		Level level3 = new Level();
+		
+		Subgame subgame1 = new Subgame();
+		Subgame subgame2 = new Subgame();
+		Subgame subgame3 = new Subgame();
+		
+		subgame1.addNode(node4);
+		subgame1.addNode(node1);
+		subgame1.addNode(node6);
+		subgame2.addNode(node3);
+		//subgame2.addNode(node6);
+		subgame2.addNode(node2);
+		subgame3.addNode(node5);
+		//subgame3.addNode(node2);
+		//subgame3.addNode(node1);
+		
+		level1.addSubgame(subgame1);
+		//level2.addSubgame(subgame1);
+		level1.addSubgame(subgame2);
+		level1.addSubgame(subgame3);
+		
+		//game1.addLevel(level3);
+		game1.addLevel(level1);
+		game1.addLevel(level2);
+		game1.addLevel(level3);
+		
+		HibernateSupport.beginTransaction();
+		game1.saveToDB();
+		game2.saveToDB();
+		game3.saveToDB();
+		game4.saveToDB();
+		game5.saveToDB();
+		HibernateSupport.commitTransaction();
+	
+		level1.setGameID(game1.getGameID()); // because 		game1.addLevel(level1);
+		level2.setGameID(game1.getGameID()); // etc.
+		level3.setGameID(game1.getGameID()); 
+		
+		HibernateSupport.beginTransaction();
+		level1.saveToDB();
+		level2.saveToDB();
+		level3.saveToDB();
+		HibernateSupport.commitTransaction();
+		
+		subgame1.setLevelID(level1.getLevelID()); // because 		level1.addSubgame(subgame1);
+		subgame2.setLevelID(level1.getLevelID()); // etc.
+		subgame3.setLevelID(level1.getLevelID()); 
+		
+		HibernateSupport.beginTransaction();
+		subgame1.saveToDB();
+		subgame2.saveToDB();
+		subgame3.saveToDB();
+		HibernateSupport.commitTransaction();
+
+		node1.setSubgameID(subgame1.getSubgameID());
+		node2.setSubgameID(subgame2.getSubgameID());
+		node3.setSubgameID(subgame2.getSubgameID());
+		node4.setSubgameID(subgame1.getSubgameID());
+		node5.setSubgameID(subgame3.getSubgameID());
+		node6.setSubgameID(subgame1.getSubgameID());
+		
+		HibernateSupport.beginTransaction();
+		node1.saveToDB();
+		node2.saveToDB();
+		node3.saveToDB();
+		node4.saveToDB();
+		node5.saveToDB();
+		node6.saveToDB();
+		HibernateSupport.commitTransaction();
+		
+		
+
+
+		
 		User readUser = HibernateSupport.readOneObjectByID(User.class, 1);
 		User readUser2 = HibernateSupport.readOneObjectByID(User.class, 2);
 		
-		
-				
 		if(readUser != null){
 			System.out.println("User read from DB: " + readUser.getUsername() + " pw: " + readUser.getPassword());
 		}

@@ -1,10 +1,31 @@
+<%@page import="org.ist.OAD14.Game.Level"%>
+<%@page import="org.ist.OAD14.Game.Subgame"%>
+<%@page import="java.util.*"%>
 <!--<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
 <%
  String errorMessage = (String)request.getAttribute("errorMessage");
+ List<Level> levels = (List<Level>)request.getAttribute("levels");
+ List<Subgame> subgames = (List<Subgame>)request.getAttribute("subgames");
+ Level current_level = (Level)request.getAttribute("current_level");
  String id = (String)request.getParameter("id");
+ 
+ System.out.println("subGameList.jsp Beginning");
+ 
+ if(levels == null){
+	 System.out.println("\"levels\" is NULL!");
+ }
+ 
+ if(subgames == null){
+	 System.out.println("\"subgames\" is NULL!");
+ }
+ 
+ if(current_level == null){
+	 System.out.println("\"current_level\" is NULL!");
+ }
 %>-->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +34,7 @@
   <link rel="stylesheet" type="text/css" href="Stylesheets/layout.css" />
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="contextMenu.js"></script>
+
   
   <title>Levels and Subgames</title>
   <!--[if lt IE 9]>
@@ -30,6 +52,7 @@
 		<tr><td><hr class='menu'><a class="menu" href="javascript:void(0)" onclick="document.getElementById('giveFeedback').style.display = 'inline';">&nbsp;&nbsp;Give Feedback&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td></tr>
 	</table>
 </div>
+
 
   <div id="wrapper">
     <header>
@@ -70,18 +93,28 @@
     </header>
     <div class="showGames" id="content">
       <ul class="config">
-        <li style="color: black">
-          Level: 
-        </li>
-        <li class="levelbtn">
-          1 
-        </li>
-        <li class="levelbtn">
-          2 
-        </li>
-        <li class="levelbtn">
-          3 
-        </li>
+        
+         <%
+         	if (levels.size() != 0){
+	        	for (int i = 1; i <= levels.size(); i++) {
+		        	%>
+		        	<form method="post">
+		        	<li>
+			          <input type="button" value="<%=i %>" />
+			        </li>
+			        <input type="hidden" name="levelID" value="<%=levels.get(i-1).getLevelID()%>">
+			        </form>
+			        <%
+		    	}
+         	}
+		 %>
+		 <li>
+	          <a href="#" title="+">
+	            + <!-- <img src="img/new_game_btn.png" alt="New Level" />  -->
+	          </a>
+	     </li>
+		 	
+        
       </ul>
       <span class="first">
         <a href="#" title="Public">
@@ -96,53 +129,27 @@
       <br />
       <ul>
         <li>
-          <h2>New Game</h2>
+          <h2>New Subgame</h2>
           <a href="GameEditor?id=<%= id %>" title="New Game">
             <img src="img/new_game_btn.png" alt="New Game" />
           </a>
         </li>
-        <li>
-          <h2>Game 1</h2>
-          <a name="game" href="game1.jsp?id=<%= id %>" title="Add Game">
-            <img src="img/game_btn.png" alt="Game" />
-          </a>
-          <p>From username</p>
-        </li>
-        <li>
-         <h2>Game 2</h2>
-          <a name="game" href="#" title="Add Game">
-            <img src="img/game_btn.png" alt="Game" />
-          </a>
-          <p>From username</p>
-        </li>
-        <li>
-          <h2>Game 3</h2>
-          <a name="game" href="#" title="Add Game">
-            <img src="img/game_btn.png" alt="Game" />
-          </a>
-          <p>From username</p>
-        </li>
-        <li>
-          <h2>Game 4</h2>
-          <a name="game" href="#" title="Add Game">
-            <img src="img/game_btn.png" alt="Game" />
-          </a>
-          <p>From username</p>
-        </li>
-        <li>
-          <h2>Game 5</h2>
-          <a name="game" href="#" title="Add Game">
-            <img src="img/game_btn.png" alt="Game" />
-          </a>
-          <p>From username</p>
-        </li>
-        <li>
-          <h2>Game 6</h2>
-          <a name="game" href="#" title="Add Game">
-            <img src="img/game_btn.png" alt="Game" />
-          </a>
-          <p>From username</p>
-        </li>
+           
+        <%
+        	for (int i = 1; i <= subgames.size(); i++) {
+	        	%>
+	        	<form method="post">
+	        	<li>
+		          <h2>Subgame <%=i %></h2>
+		          <input type="image" name="game" src="img/game_btn.png" alt="Submit Form" />
+		          <p> </p>
+		        </li>
+		        <input type="hidden" name="subGameID" value="<%=subgames.get(i-1).getSubgameID() %>">
+		        </form>
+		        <%
+	    	}
+		 %>
+
       </ul>
     </div>
   </div>

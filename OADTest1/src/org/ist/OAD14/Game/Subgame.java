@@ -1,24 +1,53 @@
 package org.ist.OAD14.Game;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Lob;
+
+import org.hibernate.annotations.GenericGenerator;
+import org.ist.OAD14.General.Interface.ISaveAndDelete;
 import org.ist.OAD14.Support.HibernateSupport;
 
-public class Subgame {
+@Entity
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+public class Subgame implements ISaveAndDelete, Serializable {
 
-	private int subgame_id;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3827928826051196223L;
+
+	@Id
+	@GenericGenerator(name="generator", strategy="increment")
+	@GeneratedValue(generator="generator")
+	protected int subgameID;
+	
+	protected int levelID;
+	
+	@Lob
 	private ArrayList<Node> nodes;
-	private ArrayList<Constraint> constraints;
+
+	@Lob
+	private ArrayList<Restriction> restriction;
 	
-	public Subgame (int id){
-		this.subgame_id = id;
+	public Subgame (){
+		this.nodes = new ArrayList<Node>();
+		this.restriction = new ArrayList<Restriction>();
 	}
 	
-	public int getSubgame_id(){
-		return subgame_id;
+	public int getSubgameID(){
+		return subgameID;
 	}
 	
-	public void setSubgame_id(int id){
-		subgame_id = id;
+	public void setSubgameID(int id){
+		subgameID = id;
 	}
 	
 	public void addNode(Node node){
@@ -29,20 +58,30 @@ public class Subgame {
 		nodes.remove(node);
 	}
 	
-	public void addConstraint(Constraint constr){
-		constraints.add(constr);
+	public void addRestriction(Restriction constr){
+		restriction.add(constr);
 	}
 	
-	public void deleteConstraint(Constraint constr){
-		constraints.remove(constr);
+	public void deleteRestriction(Restriction constr){
+		restriction.remove(constr);
 	}
 		
+	public int getLevelID() {
+		return levelID;
+	}
+
+	public void setLevelID(int levelID) {
+		this.levelID = levelID;
+	}
+	
+	@Override
 	public boolean saveToDB() {
 		if(!HibernateSupport.commit(this))
 			return false;
 		return true;
 	}
 
+	@Override
 	public void deleteFromDB() {
 		HibernateSupport.deleteObject(this);
 	}
