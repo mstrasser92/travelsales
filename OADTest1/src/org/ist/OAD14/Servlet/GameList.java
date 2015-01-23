@@ -37,7 +37,7 @@ public class GameList extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
+		System.out.println("GameList Beginning");
 		
 		String userId = request.getParameter("id");
 		User current_user = HibernateSupport.readOneObjectByID(User.class, Integer.parseInt(userId));
@@ -77,6 +77,8 @@ public class GameList extends HttpServlet {
 		//visible_games.add(game); //DEBUG
 		//visible_games.add(game2); //DEBUG
 		
+		System.out.println("GameList Near End");
+		
 		request.setAttribute("visible_games", visible_games);
 		request.setAttribute("user", current_user);
 		request.getRequestDispatcher("gameList.jsp").include(request, response);
@@ -92,12 +94,13 @@ public class GameList extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		System.out.println("GameList doPost Beginning");
 		String currentGameID = request.getParameter("gameID");
 		String userId = request.getParameter("id");
 		//String levelID = "0";
 		response.sendRedirect("SubGameList?id="+userId+"&gameID="+ currentGameID+"&levelID=-1");
 
-
+		System.out.println("GameList doPost End");
 		
 	}
 

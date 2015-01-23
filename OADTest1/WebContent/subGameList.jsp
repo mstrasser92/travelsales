@@ -9,9 +9,23 @@
  List<Level> levels = (List<Level>)request.getAttribute("levels");
  List<Subgame> subgames = (List<Subgame>)request.getAttribute("subgames");
  Level current_level = (Level)request.getAttribute("current_level");
- 
  String id = (String)request.getParameter("id");
+ 
+ System.out.println("subGameList.jsp Beginning");
+ 
+ if(levels == null){
+	 System.out.println("\"levels\" is NULL!");
+ }
+ 
+ if(subgames == null){
+	 System.out.println("\"subgames\" is NULL!");
+ }
+ 
+ if(current_level == null){
+	 System.out.println("\"current_level\" is NULL!");
+ }
 %>-->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +34,7 @@
   <link rel="stylesheet" type="text/css" href="Stylesheets/layout.css" />
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="contextMenu.js"></script>
-  <script src="contextMenu.js"></script>
+
   
   <title>Levels and Subgames</title>
   <!--[if lt IE 9]>
@@ -39,16 +53,6 @@
 	</table>
 </div>
 
-
-<div id="menu">
-	<table id="contextmenu" cellpadding="5" cellspacing="0">
-		<tr class="nongame"><td><a class='menu'  href="subGameList.jsp?id=<%= id %>" onclick="">&nbsp;&nbsp;New Game</a></td></tr>
-		<tr class="gamemenu"><td><a class='menu'  href="subGameList.jsp?id=<%= id %>" onclick="">&nbsp;&nbsp;Play&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td></tr>
-		<tr class="gamemenu"><td><a class='menu'  href="javascript:void(0)" onclick=""">&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td></tr>
-		<tr class="gamemenu"><td><hr class='menu'><a class='menu' href='javascript:void(0)'>&nbsp;&nbsp;Delete</a></td></tr>
-		<tr><td><hr class='menu'><a class="menu" href="javascript:void(0)" onclick="document.getElementById('giveFeedback').style.display = 'inline';">&nbsp;&nbsp;Give Feedback&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td></tr>
-	</table>
-</div>
 
   <div id="wrapper">
     <header>

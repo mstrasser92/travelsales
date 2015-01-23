@@ -41,18 +41,37 @@ public class SubGameList extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("SubGameList entered");
 		
+		System.out.println("SubGameList doGet Beginning");
 
+		System.out.println("Use parameter id to get current_user from DB");
 		String userID = request.getParameter("id");
 		User current_user = HibernateSupport.readOneObjectByID(User.class, Integer.parseInt(userID));
 		
+		System.out.println("Use parameter gameID to get current_game from DB");
 		String gameID = request.getParameter("gameID");
 		Game current_game = HibernateSupport.readOneObjectByID(Game.class, Integer.parseInt(gameID));
 		
 		// get all levels of current game
+		System.out.println("Read levels from DB into \"levels\" object");
 		List<Criterion> criterions = new ArrayList<Criterion>();
 		criterions.add(Restrictions.eq("gameID", current_game.getGameID()));
 		List<Level> levels = HibernateSupport.readMoreObjects(Level.class, criterions);
-				
+
+	
+		// DEBUG
+		if (levels != null)
+		{
+			System.out.println("levels.size(): " + levels.size());
+			for (int i = 0; i < levels.size(); i++) {
+				System.out.println("GameID of level " + i + ": " + levels.get(i).getGameID());
+			}
+		}
+		else
+		{
+			System.out.println("levels == NULL!!");
+		}
+
+
 		
 		// find current level so we know which subgames we should display
 		String levelID = request.getParameter("levelID");
@@ -60,18 +79,23 @@ public class SubGameList extends HttpServlet {
 		
 		if (levels.size() != 0){
 			if (Integer.parseInt(levelID) == -1){	
+				System.out.println("levelID detected as -1 --> go to level 1");
 				current_level = levels.get(0);
 			}
 			else{
+				System.out.println("levelID detected as " + Integer.parseInt(levelID) + "--> go to level " + Integer.parseInt(levelID));
 				current_level = HibernateSupport.readOneObjectByID(Level.class, Integer.parseInt(levelID));
 			}
 		}
-		
+
+		System.out.println("levelID: " + Integer.parseInt(levelID));
+		System.out.println("current_level ID: " + current_level.getLevelID());
 		// get all subgames of current level
 		criterions = new ArrayList<Criterion>();
 		criterions.add(Restrictions.eq("levelID", current_level.getLevelID()));
 		List<Subgame> subgames = HibernateSupport.readMoreObjects(Subgame.class, criterions);
 		
+		System.out.println("SubGameList Mid");
 	//TODO what if there is no level?	
 	
 		/*
@@ -96,14 +120,27 @@ public class SubGameList extends HttpServlet {
 			levels.add(subgames);
 		}
 		*/
+		// DEBUG
+		if (levels != null)
+		{
+			System.out.println("levels.size(): " + levels.size());
+			for (int i = 0; i < levels.size(); i++) {
+				System.out.println("GameID of level " + i + ": " + levels.get(i).getGameID());
+			}
+		}
+		else
+		{
+			System.out.println("levels == NULL!!");
+		}
 		
+		System.out.println("SubGameList Near End");
 		
 		request.setAttribute("levels", levels);		
 		request.setAttribute("current_level", current_level);
 		request.setAttribute("subgames", subgames);
 		request.getRequestDispatcher("subGameList.jsp").include(request, response);
 		
-		
+		System.out.println("SubGameList End");
 	}
 
 	/**

@@ -14,6 +14,8 @@
  String fbsent = "none";
  if(request.getParameter("feedbacksend")!= null)
 	 fbsent = "inline";
+ 
+ System.out.println("gameList.jsp Beginning");
 	 
 %>-->
 <!DOCTYPE html>
@@ -32,13 +34,21 @@
 </head>
 <body>
 
+
+
 <div id="menu">
 	<table id="contextmenu" cellpadding="5" cellspacing="0" style="">
-		<tr class="nongame"><td><a class='menu'  href="subGameList.jsp?id=<%= id %>" onclick="">&nbsp;&nbsp;New Game</a></td></tr>
-		<tr class="gamemenu"><td><a class='menu'  href="subGameList.jsp?id=<%= id %>" onclick="">&nbsp;&nbsp;Play</a></td></tr>
-		<tr class="gamemenu"><td><a class='menu'  href="javascript:void(0)" onclick="document.getElementById('gamePreferences').style.display = 'inline';">&nbsp;&nbsp;Properties&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td></tr>
-		<tr class="gamemenu"><td><hr class='menu'><form name="deleteGame" method="post"><a href="javascript:void(0)" onclick="deleteGame.submit();">Delete</a><input id="gameDeletionId" type="hidden" value="" /></form></td></tr>
-		<tr><td><hr class='menu'><a class="menu" href="javascript:void(0)" onclick="document.getElementById('giveFeedback').style.display = 'inline';">&nbsp;&nbsp;Give Feedback</a></td></tr>
+	    <form method="post">
+			<tr class="nongame"><td><a class='menu'  href="GameEditor?id=<%= id %>" onclick="">&nbsp;&nbsp;New Game</a></td></tr>
+			<tr class="gamemenu"><td><a class='menu'  href="subGameList?id=<%= id %>" onclick="">&nbsp;&nbsp;Play</a></td></tr>
+			<tr class="gamemenu"><td><a class='menu'  href="javascript:void(0)" onclick="document.getElementById('gamePreferences').style.display = 'inline';">&nbsp;&nbsp;Properties&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td></tr>
+			<tr class="gamemenu"><td><hr class='menu'><form name="deleteGame" method="post"><a href="javascript:void(0)" onclick="deleteGame.submit();">Delete</a><input id="gameDeletionId" type="hidden" value="" /></form></td></tr>
+			<tr><td><hr class='menu'><a class="menu" href="javascript:void(0)" onclick="document.getElementById('giveFeedback').style.display = 'inline';">&nbsp;&nbsp;Give Feedback</a></td></tr>
+			
+			<!-- TODO: identify gameID of game that you right clicked on -- this will then be submitted to the doPost function of GameList.java-->
+	    	<!--   <input type="hidden" name="gameID" value="<%=games.get(0).getGameID()%>"> -->
+	    	
+	    </form>
 	</table>
 </div>
 
