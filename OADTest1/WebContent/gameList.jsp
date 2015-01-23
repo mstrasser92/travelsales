@@ -46,7 +46,7 @@
 					<a class='menu'  href="javascript:void(0)" onclick="newGame.submit();">&nbsp;&nbsp;New Game</a>
 				</form>	
 			</td></tr>
-			<tr class="gamemenu"><td><a class='menu'  href="subGameList?id=<%= id %>" onclick="">&nbsp;&nbsp;Play</a></td></tr>
+			<tr class="gamemenu"><td><a class='menu'  href="javascript:void(0)" onclick="playgame();">&nbsp;&nbsp;Play</a></td></tr>
 			<tr class="gamemenu"><td><a class='menu'  href="javascript:void(0)" onclick="document.getElementById('gamePreferences').style.display = 'inline';">&nbsp;&nbsp;Properties&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td></tr>
 			<tr class="gamemenu"><td><hr class='menu'>
 				<form name="deleteGame">
@@ -157,7 +157,7 @@
       <ul>
         <li>
           <h2>New Game</h2>
-          <a href="GameEditor?id=<%= id %>" title="New Game">
+          <a href="javascript:void(0)" onclick="newGame.submit();"title="New Game">
             <img src="img/new_game_btn.png" alt="New Game" />
           </a>
         </li>
@@ -166,14 +166,15 @@
         <%
         	for (int i = 0; i < games.size(); i++) {
 	        	%>
-	        	<form method="post">
-	        	<li>
+        	<li>
+        		<form name="game<%=games.get(i).getGameID()%>" method="post">
 		          <h2><%=games.get(i).getName() %></h2>
 		          <input id="<%=games.get(i).getGameID()%>" type="image" title="<%=games.get(i).getName() %>" name="game" src="img/game_btn.png" alt="Submit Form" />
 		          <p>From <%=games.get(0).getAuthor().getUsername() %></p>
-		        </li>
-		        <input type="hidden" name="gameID" value="<%=games.get(i).getGameID()%>">
+		          <input type="hidden" name="gameID" value="<%=games.get(i).getGameID()%>">
 		        </form>
+	        </li>
+		        
 		        <%
 	    	}
 		 %>

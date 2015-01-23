@@ -72,12 +72,8 @@ $(function() {
 		});		
 });
 
-// Quelltext anzeigen
-function viewSource() {
-	var w=window.open("view-source:"+window.location,'','resizable=1,scrollbars=1');
-}
-
-// Seite in neuem Fenster �ffnen
-function openFrameInNewWindow() {
-	var w=window.open(window.location,'','resizable=1,scrollbars=1,status=1,location=1,menubar=1,toolbar=1');
+function playgame() {
+	var id = document.getElementById("gameId").value;
+	var name = "game"+id;
+	document.forms[name].submit();
 }

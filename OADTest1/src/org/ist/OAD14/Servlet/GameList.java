@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.Session;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 import org.ist.OAD14.Game.*;
@@ -38,6 +37,8 @@ public class GameList extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		System.out.println("GameList Beginning");
+		String userId = request.getParameter("id");
+		User current_user = HibernateSupport.readOneObjectByID(User.class, Integer.parseInt(userId));
 		
 		String action = "";
 		if(request.getParameter("action") != null)
@@ -72,16 +73,14 @@ public class GameList extends HttpServlet {
 		if(action.equals("newGame"))
 		{
 			System.out.println("Found argument newGame");
-			int gameDeletionId = Integer.parseInt(request.getParameter("gameDeletionId"));
-			Game gameToDelete = HibernateSupport.readOneObjectByID(Game.class, gameDeletionId);
+			Game newGame = new Game("Your new Game", current_user, "public");
 			HibernateSupport.beginTransaction();
-				gameToDelete.deleteFromDB();
+				newGame.saveToDB();
 			HibernateSupport.commitTransaction();
-			System.out.println("Game deleted");
+			System.out.println("Game created");
 		}
+
 		
-		String userId = request.getParameter("id");
-		User current_user = HibernateSupport.readOneObjectByID(User.class, Integer.parseInt(userId));
 		
 		
 		//DEBUG
