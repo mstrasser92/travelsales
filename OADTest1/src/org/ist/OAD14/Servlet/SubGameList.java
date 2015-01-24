@@ -39,10 +39,8 @@ public class SubGameList extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("SubGameList entered");
-		
 		System.out.println("SubGameList doGet Beginning");
-
+		
 		System.out.println("Use parameter id to get current_user from DB");
 		String userID = request.getParameter("id");
 		User current_user = HibernateSupport.readOneObjectByID(User.class, Integer.parseInt(userID));
@@ -54,6 +52,16 @@ public class SubGameList extends HttpServlet {
 		System.out.println("userID: " + userID);
 		System.out.println("gameID: " + gameID);
 		
+		System.out.println("Checking for visibility changes");
+		String newVisibility = request.getParameter("setVisibility");
+		if(newVisibility != null) {
+			Game game = HibernateSupport.readOneObjectByID(Game.class, Integer.parseInt(gameID));
+			game.setVisibility(newVisibility);
+			HibernateSupport.beginTransaction();
+				game.saveToDB();
+			HibernateSupport.commitTransaction();
+			System.out.println("Game visibility changed to " + newVisibility);
+		}
 		
 		// get all levels of current game
 		System.out.println("Read levels from DB into \"levels\" object");
@@ -206,11 +214,19 @@ public class SubGameList extends HttpServlet {
 		String currentGameID = request.getParameter("gameID");
 		String currentLevelID = request.getParameter("levelID");
 		String userID = request.getParameter("id");
+		String setVisibility = request.getParameter("setVisibility");
 		
 		System.out.println("SubGameList doPost currentGameID: " + currentGameID);
 		System.out.println("SubGameList doPost currentLevelID: " + currentLevelID);
 		System.out.println("SubGameList doPost userID: " + userID);
+		System.out.println("SubGameList doPost setVisibility: " + setVisibility);
+		
+		if(setVisibility != null) {
+			response.sendRedirect("SubGameList?id="+userID+"&gameID="+ currentGameID+"&levelID="+currentLevelID+"&setVisibility="+setVisibility);
+		}
+		else {
+			response.sendRedirect("SubGameList?id="+userID+"&gameID="+ currentGameID+"&levelID="+currentLevelID);
+		}
 
-		response.sendRedirect("SubGameList?id="+userID+"&gameID="+ currentGameID+"&levelID="+currentLevelID);
 	}
 }
