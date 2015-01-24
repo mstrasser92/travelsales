@@ -9,6 +9,8 @@
  List<Level> levels = (List<Level>)request.getAttribute("levels");
  List<Subgame> subgames = (List<Subgame>)request.getAttribute("subgames");
  Level current_level = (Level)request.getAttribute("current_level");
+ String gameID = (String)request.getAttribute("gameID");
+ String userID = (String)request.getAttribute("userID");
  String id = (String)request.getParameter("id");
  
  System.out.println("subGameList.jsp Beginning");
@@ -94,20 +96,22 @@
     <div class="showGames" id="content">
       <ul class="config">
         
-         <%
-         	if (levels.size() != 0){
-	        	for (int i = 1; i <= levels.size(); i++) {
-		        	%>
-		        	<form method="post">
-		        	<li>
-			          <input type="button" value="<%=i %>" />
-			        </li>
-			        <input type="hidden" name="levelID" value="<%=levels.get(i-1).getLevelID()%>">
-			        </form>
-			        <%
-		    	}
-         	}
+        <%
+     	if (levels.size() != 0){
+        	for (int i = 1; i <= levels.size(); i++) {
+	        	%>
+	        	<form method="post" action="SubGameList?id=<%=userID%>&gameID=<%=gameID%>&levelID=<%=levels.get(i-1).getLevelID()%>">
+	        	<li>
+		          <input type="image" name="game" src="img/game_btn.png" width="30" height="30" alt="Submit Form" />
+		          <p> </p>
+		        </li>
+		        </form>
+		        <%
+        	}
+	    }
 		 %>
+        
+
 		 <li>
 	          <a href="#" title="+">
 	            + <!-- <img src="img/new_game_btn.png" alt="New Level" />  -->

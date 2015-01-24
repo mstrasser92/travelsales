@@ -46,6 +46,9 @@ public class TestDB {
 		Subgame subgame1 = new Subgame();
 		Subgame subgame2 = new Subgame();
 		Subgame subgame3 = new Subgame();
+		Subgame subgame4 = new Subgame();
+		Subgame subgame5 = new Subgame();
+		Subgame subgame6 = new Subgame();
 		
 		subgame1.addNode(node4);
 		subgame1.addNode(node1);
@@ -61,6 +64,9 @@ public class TestDB {
 		//level2.addSubgame(subgame1);
 		level1.addSubgame(subgame2);
 		level1.addSubgame(subgame3);
+		level2.addSubgame(subgame4);
+		level3.addSubgame(subgame5);
+		level3.addSubgame(subgame6);
 		
 		//game1.addLevel(level3);
 		game1.addLevel(level1);
@@ -88,11 +94,17 @@ public class TestDB {
 		subgame1.setLevelID(level1.getLevelID()); // because 		level1.addSubgame(subgame1);
 		subgame2.setLevelID(level1.getLevelID()); // etc.
 		subgame3.setLevelID(level1.getLevelID()); 
-		
+		subgame4.setLevelID(level2.getLevelID()); 
+		subgame5.setLevelID(level3.getLevelID()); 
+		subgame6.setLevelID(level3.getLevelID()); 
+			
 		HibernateSupport.beginTransaction();
 		subgame1.saveToDB();
 		subgame2.saveToDB();
 		subgame3.saveToDB();
+		subgame4.saveToDB();
+		subgame5.saveToDB();
+		subgame6.saveToDB();
 		HibernateSupport.commitTransaction();
 
 		node1.setSubgameID(subgame1.getSubgameID());

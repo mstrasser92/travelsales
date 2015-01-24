@@ -50,6 +50,10 @@ public class SubGameList extends HttpServlet {
 		System.out.println("Use parameter gameID to get current_game from DB");
 		String gameID = request.getParameter("gameID");
 		Game current_game = HibernateSupport.readOneObjectByID(Game.class, Integer.parseInt(gameID));
+	
+		System.out.println("userID: " + userID);
+		System.out.println("gameID: " + gameID);
+		
 		
 		// get all levels of current game
 		System.out.println("Read levels from DB into \"levels\" object");
@@ -74,6 +78,7 @@ public class SubGameList extends HttpServlet {
 
 		
 		// find current level so we know which subgames we should display
+		
 		String levelID = request.getParameter("levelID");
 		Level current_level = new Level();
 		
@@ -91,6 +96,7 @@ public class SubGameList extends HttpServlet {
 		System.out.println("levelID: " + Integer.parseInt(levelID));
 		System.out.println("current_level ID: " + current_level.getLevelID());
 		// get all subgames of current level
+		System.out.println("Ret all subgames of current level");
 		criterions = new ArrayList<Criterion>();
 		criterions.add(Restrictions.eq("levelID", current_level.getLevelID()));
 		List<Subgame> subgames = HibernateSupport.readMoreObjects(Subgame.class, criterions);
@@ -135,6 +141,8 @@ public class SubGameList extends HttpServlet {
 		
 		System.out.println("SubGameList Near End");
 		
+		request.setAttribute("userID", userID);
+		request.setAttribute("gameID", gameID);
 		request.setAttribute("levels", levels);		
 		request.setAttribute("current_level", current_level);
 		request.setAttribute("subgames", subgames);
@@ -150,13 +158,12 @@ public class SubGameList extends HttpServlet {
 
 		String currentGameID = request.getParameter("gameID");
 		String currentLevelID = request.getParameter("levelID");
-				
-		String userId = request.getParameter("id");
-
-		response.sendRedirect("SubGameList?id="+userId+"&gameID="+ currentGameID+"&levelID="+currentLevelID);
+		String userID = request.getParameter("id");
 		
-	}
-	
-	
+		System.out.println("SubGameList doPost currentGameID: " + currentGameID);
+		System.out.println("SubGameList doPost currentLevelID: " + currentLevelID);
+		System.out.println("SubGameList doPost userID: " + userID);
 
+		response.sendRedirect("SubGameList?id="+userID+"&gameID="+ currentGameID+"&levelID="+currentLevelID);
+	}
 }

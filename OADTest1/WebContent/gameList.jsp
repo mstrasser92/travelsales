@@ -46,7 +46,7 @@
 			<tr><td><hr class='menu'><a class="menu" href="javascript:void(0)" onclick="document.getElementById('giveFeedback').style.display = 'inline';">&nbsp;&nbsp;Give Feedback</a></td></tr>
 			
 			<!-- TODO: identify gameID of game that you right clicked on -- this will then be submitted to the doPost function of GameList.java-->
-	    	<!--   <input type="hidden" name="gameID" value="<%=games.get(0).getGameID()%>"> -->
+	    	<!--   <input type="hidden" name="gameID" value="<% // games.get(0).getGameID()%>"> -->
 	    	
 	    
 		</table>
