@@ -42,6 +42,8 @@ public class TestDB {
 		Level level1 = new Level();
 		Level level2 = new Level();
 		Level level3 = new Level();
+		Level level4 = new Level();
+		Level level5 = new Level();
 		
 		Subgame subgame1 = new Subgame();
 		Subgame subgame2 = new Subgame();
@@ -49,6 +51,9 @@ public class TestDB {
 		Subgame subgame4 = new Subgame();
 		Subgame subgame5 = new Subgame();
 		Subgame subgame6 = new Subgame();
+		Subgame subgame7 = new Subgame();
+		Subgame subgame8 = new Subgame();
+		Subgame subgame9 = new Subgame();
 		
 		subgame1.addNode(node4);
 		subgame1.addNode(node1);
@@ -67,11 +72,16 @@ public class TestDB {
 		level2.addSubgame(subgame4);
 		level3.addSubgame(subgame5);
 		level3.addSubgame(subgame6);
+		level4.addSubgame(subgame7);
+		level4.addSubgame(subgame8);
+		level5.addSubgame(subgame9);
 		
 		//game1.addLevel(level3);
 		game1.addLevel(level1);
 		game1.addLevel(level2);
 		game1.addLevel(level3);
+		game2.addLevel(level4);
+		game2.addLevel(level5);
 		
 		HibernateSupport.beginTransaction();
 		game1.saveToDB();
@@ -84,11 +94,15 @@ public class TestDB {
 		level1.setGameID(game1.getGameID()); // because 		game1.addLevel(level1);
 		level2.setGameID(game1.getGameID()); // etc.
 		level3.setGameID(game1.getGameID()); 
+		level4.setGameID(game2.getGameID());
+		level5.setGameID(game2.getGameID());
 		
 		HibernateSupport.beginTransaction();
 		level1.saveToDB();
 		level2.saveToDB();
 		level3.saveToDB();
+		level4.saveToDB();
+		level5.saveToDB();
 		HibernateSupport.commitTransaction();
 		
 		subgame1.setLevelID(level1.getLevelID()); // because 		level1.addSubgame(subgame1);
@@ -96,7 +110,10 @@ public class TestDB {
 		subgame3.setLevelID(level1.getLevelID()); 
 		subgame4.setLevelID(level2.getLevelID()); 
 		subgame5.setLevelID(level3.getLevelID()); 
-		subgame6.setLevelID(level3.getLevelID()); 
+		subgame6.setLevelID(level3.getLevelID());
+		subgame7.setLevelID(level4.getLevelID());
+		subgame8.setLevelID(level4.getLevelID());
+		subgame9.setLevelID(level5.getLevelID());
 			
 		HibernateSupport.beginTransaction();
 		subgame1.saveToDB();
@@ -105,6 +122,9 @@ public class TestDB {
 		subgame4.saveToDB();
 		subgame5.saveToDB();
 		subgame6.saveToDB();
+		subgame7.saveToDB();
+		subgame8.saveToDB();
+		subgame9.saveToDB();
 		HibernateSupport.commitTransaction();
 
 		node1.setSubgameID(subgame1.getSubgameID());

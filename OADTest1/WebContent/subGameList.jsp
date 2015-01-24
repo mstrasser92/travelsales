@@ -100,12 +100,16 @@
      	if (levels.size() != 0){
         	for (int i = 1; i <= levels.size(); i++) {
 	        	%>
-	        	<form method="post" action="SubGameList?id=<%=userID%>&gameID=<%=gameID%>&levelID=<%=levels.get(i-1).getLevelID()%>">
-	        	<li>
-		          <input type="image" name="game" src="img/game_btn.png" width="30" height="30" alt="Submit Form" />
-		          <p> </p>
-		        </li>
-		        </form>
+        	<li>
+          	  <form name="level<%= i %>" method="post" action="SubGameList?id=<%=userID%>&gameID=<%=gameID%>&levelID=<%=levels.get(i-1).getLevelID()%>">
+		          <a href="javascript:void(0)" onclick="level<%=i%>.submit();">
+		          	<div class="levelbtn">
+	          			<%=i %>
+		          	</div>
+		          </a>
+	          </form>
+	        </li>
+		        
 		        <%
         	}
 	    }
