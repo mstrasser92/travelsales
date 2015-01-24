@@ -12,7 +12,6 @@
  String gameID = (String)request.getAttribute("gameID");
  String userID = (String)request.getAttribute("userID");
  String id = (String)request.getParameter("id");
- String gameID = request.getParameter("gameID");
  String levelID = request.getParameter("levelID");
  
  System.out.println("subGameList.jsp Beginning");
