@@ -74,8 +74,12 @@ public class GameList extends HttpServlet {
 		{
 			System.out.println("Found argument newGame");
 			Game newGame = new Game("Your new Game", current_user, "public");
+			Level newLevel = new Level();
+			newGame.addLevel(newLevel);
 			HibernateSupport.beginTransaction();
 				newGame.saveToDB();
+				newLevel.setGameID(newGame.getGameID());
+				newLevel.saveToDB();
 			HibernateSupport.commitTransaction();
 			System.out.println("Game created");
 		}
@@ -137,7 +141,10 @@ public class GameList extends HttpServlet {
 		System.out.println("GameList doPost Beginning");
 		String currentGameID = request.getParameter("gameID");
 		String userId = request.getParameter("id");
-		String levelID = "1";
+		Game currentGame = HibernateSupport.readOneObjectByID(Game.class, Integer.parseInt(currentGameID));
+		String levelID = "-1";
+		if(!currentGame.getLevels().isEmpty())
+			levelID = String.valueOf(currentGame.getLevels().get(0).getLevelID());
 		response.sendRedirect("SubGameList?id="+userId+"&gameID="+ currentGameID+"&levelID="+levelID);
 		System.out.println("GameList doPost End");
 		
