@@ -105,13 +105,38 @@
             </a>
           </li>
           <li>
-            <a href="#" title="Logout">
+            <a href="Login" title="Logout">
               <img src="img/logout_btn.png" alt="Logout" />
             </a>
           </li>
         </ul>
       </nav>
     </header>
+    <div class="visibility">
+          <ul>
+	      <li>
+	          <form name="public" method="post" action="SubGameList">
+			      <span class="first">
+			        <input id="public-button" type="image" title="public" src="img/public_btn.png" alt="Public" />
+			        <input type="hidden" name="id" value="<%=userID%>" />
+			        <input type="hidden" name="gameID" value="<%=gameID%>" />
+			        <input type="hidden" name="levelID" value="<%=levelID%>" />
+			        <input type="hidden" name="setVisibility" value="public" />
+			      </span>
+		      </form>
+	          <form name="private" method="post" action="SubGameList">
+		          <span>
+		            <input id="private-button" type="image" title="private" src="img/private_btn.png" alt="Private" />
+			        <input type="hidden" name="id" value="<%=userID%>" />
+			        <input type="hidden" name="gameID" value="<%=gameID%>" />
+			        <input type="hidden" name="levelID" value="<%=levelID%>" />
+			        <input type="hidden" name="setVisibility" value="private" />
+			      </span>
+		      </form>
+	      </li>
+      </ul>
+    </div>
+    
     <div class="showGames" id="content">
       <ul class="config">
         
@@ -152,16 +177,6 @@
 		 	
         
       </ul>
-      <span class="first">
-        <a href="#" title="Public">
-          <img src="img/public_btn.png" alt="Public" />
-        </a>
-      </span>
-      <span>
-        <a href="#" title="Private">
-          <img src="img/private_btn.png" alt="Private" />
-        </a>
-      </span>
       <br />
       <ul>
         <li>

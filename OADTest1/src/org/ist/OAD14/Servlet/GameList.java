@@ -137,7 +137,7 @@ public class GameList extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 		System.out.println("GameList doPost Beginning");
 		String currentGameID = request.getParameter("gameID");
 		String userId = request.getParameter("id");
