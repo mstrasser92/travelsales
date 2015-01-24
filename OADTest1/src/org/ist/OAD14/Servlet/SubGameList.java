@@ -2,6 +2,7 @@ package org.ist.OAD14.Servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -54,6 +55,7 @@ public class SubGameList extends HttpServlet {
 		System.out.println("userID: " + userID);
 		System.out.println("gameID: " + gameID);
 		
+		Boolean sameLevel = false;
 		
 		// get all levels of current game
 		System.out.println("Read levels from DB into \"levels\" object");
@@ -83,6 +85,8 @@ public class SubGameList extends HttpServlet {
 		if(action.equals("addLevel"))
 		{
 			System.out.println("Found argument addLevel");
+			if(levels.isEmpty())
+				sameLevel = true;
 			Level newLevel = new Level();
 			newLevel.setGameID(current_game.getGameID());
 			current_game.addLevel(newLevel);
@@ -100,12 +104,16 @@ public class SubGameList extends HttpServlet {
 			System.out.println("ID for Deletion is: "+String.valueOf(levelDeletionId));
 			Level levelToDelete = HibernateSupport.readOneObjectByID(Level.class, levelDeletionId);
 			current_game.deleteLevel(levelToDelete);
-			current_game.getLevels().remove(levelToDelete);
+			System.out.println(levels.get(0).toString());
 			HibernateSupport.beginTransaction();
 				levelToDelete.deleteFromDB();
 				current_game.saveToDB();
 			HibernateSupport.commitTransaction();
-			System.out.println("Game deleted");
+			
+			if(levelDeletionId == Integer.parseInt(request.getParameter("levelID")))
+				sameLevel=true;
+
+			System.out.println("Level deleted");
 			levels = HibernateSupport.readMoreObjects(Level.class, criterions);
 		}
 		
@@ -115,6 +123,7 @@ public class SubGameList extends HttpServlet {
 			System.out.println("levels.size(): " + levels.size());
 			for (int i = 0; i < levels.size(); i++) {
 				System.out.println("GameID of level " + i + ": " + levels.get(i).getGameID());
+				System.out.println("GameID of level " + i + ": " + levels.get(i).getLevelID());
 			}
 		}
 		else
@@ -127,6 +136,9 @@ public class SubGameList extends HttpServlet {
 		// find current level so we know which subgames we should display
 		
 		String levelID = request.getParameter("levelID");
+		
+		if(sameLevel)
+			levelID = "-1";
 		Level current_level = new Level();
 		
 		if (levels.size() != 0){

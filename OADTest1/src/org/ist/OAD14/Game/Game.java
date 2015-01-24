@@ -90,6 +90,10 @@ public class Game implements ISaveAndDelete, Serializable {
 	
 	public void deleteLevel(Level lvl){
 		levels.remove(lvl);
+		int i = 0;
+		while(levels.get(i).getLevelID()!= lvl.getLevelID())
+			i++;
+		levels.remove(i);
 	}
 	
 	public ArrayList<Level> getLevels() {
