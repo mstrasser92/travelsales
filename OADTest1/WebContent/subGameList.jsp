@@ -49,7 +49,7 @@
 <div id="menu">
 	<table id="contextmenu" cellpadding="5" cellspacing="0">
 		<tr class="nongame"><td><a class='menu'  href="GameEditor?id=<%= id %>" onclick="">&nbsp;&nbsp;New Subgame</a></td></tr>
-		<tr class="nongame"><td><a class='menu'  href="#" onclick="">&nbsp;&nbsp;New Level</a></td></tr>
+		<tr class="nongame"><td><a class='menu'  href="javascript:void(0)" onclick="addLevel.submit();">&nbsp;&nbsp;New Level</a></td></tr>
 		<tr class="gamemenu"><td><a class='menu'  href="javascript:void(0)" onclick="playgame();">&nbsp;&nbsp;Play&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td></tr>
 		<tr class="gamemenu"><td><a class='menu'  href="javascript:void(0)" onclick="">&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td></tr>
 		<tr class="gamemenu"><td><hr class='menu'>
@@ -60,7 +60,16 @@
 					<input type="hidden" id="levelID" name="levelID" value="<%= levelID %>">
 					<input id="action" name="action" type="hidden" value="delete" />
 					<a class="menu" href="javascript:void(0)" onclick="deleteGame.submit();">&nbsp;&nbsp;Delete</a>
-				</form></td>
+				</form></td></tr>
+		<tr class="levelmenu"><td><hr class='menu'>
+				<form name="deleteLevel">
+					<input id="levelDeletionId" name="levelDeletionId" type="hidden"/>	
+					<input type="hidden" id="useridhidden" name="id" value="<%= id %>">
+					<input type="hidden" id="gameID" name="gameID" value="<%= gameID %>">
+					<input type="hidden" id="levelID" name="levelID" value="<%= levelID %>">
+					<input id="action" name="action" type="hidden" value="deleteLevel" />
+					<a class="menu" href="javascript:void(0)" onclick="deleteLevel.submit();">&nbsp;&nbsp;Delete Level</a>
+				</form></td></tr>
 		<tr><td><hr class='menu'><a class="menu" href="javascript:void(0)" onclick="document.getElementById('giveFeedback').style.display = 'inline';">&nbsp;&nbsp;Give Feedback&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td></tr>
 	</table>
 </div>
@@ -112,7 +121,7 @@
 	        	%>
         	<li>
           	  <form name="level<%= i %>" method="post" action="SubGameList?id=<%=userID%>&gameID=<%=gameID%>&levelID=<%=levels.get(i-1).getLevelID()%>">
-		          <a href="javascript:void(0)" onclick="level<%=i%>.submit();">
+		          <a name="level" id="<%=levels.get(i-1).getLevelID()%>"href="javascript:void(0)" onclick="level<%=i%>.submit();">
 		          	<div class="levelbtn">
 	          			<%=i %>
 		          	</div>
@@ -127,9 +136,18 @@
         
 
 		 <li>
-	          <a href="#" title="+">
-	            + <!-- <img src="img/new_game_btn.png" alt="New Level" />  -->
-	          </a>
+	        <div class="levelbtn">
+	        	<form name="addLevel">
+					<input type="hidden" name="id" value="<%= id %>">
+					<input type="hidden" name="gameID" value="<%= gameID %>">
+					<input type="hidden" name="levelID" value="<%= levelID %>">
+					<input id="action" name="action" type="hidden" value="addLevel" />
+	        		<a href="javascript:void(0)"  onclick="addLevel.submit();" title="+">
+	            	+ <!-- <img src="img/new_game_btn.png" alt="New Level" />  -->
+	          		</a>
+	        	</form>  
+	          
+          	</div>
 	     </li>
 		 	
         

@@ -48,27 +48,47 @@ function hideMenu(e) {
 
 // Erkennen was geklickt wurde
 $(function() {
+		var clickedongame = 0;
 		$('div').on('contextmenu', 'input', function(e){
 		    if(this.name == "game")
 	    	{
-		    	clickedongame = 1;
+		    	clickedongame = 2;
 		    	$('.gamemenu').css('display', 'inline');
 		    	$('.nongame').css('display', 'none');
+		    	$('.levelmenu').css('display', 'none');
 		    	document.getElementById("gameDeletionId").value= this.id;
 		    	document.getElementById("gameName").value= this.title;
 		    	document.getElementById("gameId").value= this.id;
 	    	} else {
 	    		$('.gamemenu').css('display', 'none');
+	    		$('.levelmenu').css('display', 'none');
 	    		$('.nongame').css('display', 'inline');
 	    	}
 		});
+		$('div').on('contextmenu', 'a', function(e){
+		    if(this.name == "level")
+	    	{
+		    	clickedongame = 2;
+		    	$('.levelmenu').css('display', 'inline');
+		    	$('.gamemenu').css('display', 'none');
+		    	$('.nongame').css('display', 'none');
+		    	document.getElementById("levelDeletionId").value= this.id;
+	    	} else {
+	    		$('.gamemenu').css('display', 'none');
+	    		$('.nongame').css('display', 'inline');
+	    		$('.levelmenu').css('display', 'none');
+	    	}
+		});
 		$('body').on('contextmenu', 'div', function(e){
-		    if(this.id =="content" &&clickedongame != 1)
+		    if(this.id =="content" &&clickedongame == 0)
 	    	{		    	
 		    	$('.gamemenu').css('display', 'none');
 	    		$('.nongame').css('display', 'inline');
+	    		$('.levelmenu').css('display', 'none');
 	    	}
-		    clickedongame = 0;
+		    clickedongame = clickedongame - 1;
+		    if(clickedongame < 0)
+		    	clickedongame = 0;
 		});		
 });
 

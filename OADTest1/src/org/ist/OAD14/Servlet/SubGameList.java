@@ -80,6 +80,34 @@ public class SubGameList extends HttpServlet {
 			HibernateSupport.commitTransaction();
 			System.out.println("Game deleted");
 		}
+		if(action.equals("addLevel"))
+		{
+			System.out.println("Found argument addLevel");
+			Level newLevel = new Level();
+			newLevel.setGameID(current_game.getGameID());
+			current_game.addLevel(newLevel);
+			HibernateSupport.beginTransaction();
+			newLevel.saveToDB();
+			current_game.saveToDB();
+			HibernateSupport.commitTransaction();
+			System.out.println("Level added");
+			levels = HibernateSupport.readMoreObjects(Level.class, criterions);
+		}
+		if(action.equals("deleteLevel"))
+		{
+			System.out.println("Found argument deleteLevel");
+			int levelDeletionId = Integer.parseInt(request.getParameter("levelDeletionId"));
+			System.out.println("ID for Deletion is: "+String.valueOf(levelDeletionId));
+			Level levelToDelete = HibernateSupport.readOneObjectByID(Level.class, levelDeletionId);
+			current_game.deleteLevel(levelToDelete);
+			current_game.getLevels().remove(levelToDelete);
+			HibernateSupport.beginTransaction();
+				levelToDelete.deleteFromDB();
+				current_game.saveToDB();
+			HibernateSupport.commitTransaction();
+			System.out.println("Game deleted");
+			levels = HibernateSupport.readMoreObjects(Level.class, criterions);
+		}
 		
 		// DEBUG
 		if (levels != null)

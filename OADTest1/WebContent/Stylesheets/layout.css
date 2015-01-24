@@ -136,6 +136,12 @@ tr.gamemenu
 	width: 100%;
 }
 
+tr.levelmenu
+{
+	display: none;
+	width: 100%;
+}
+
 div.overlay
 {
   	background: url("../img/preferences_field.png") no-repeat;
