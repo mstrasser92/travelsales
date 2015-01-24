@@ -12,6 +12,8 @@
  String gameID = (String)request.getAttribute("gameID");
  String userID = (String)request.getAttribute("userID");
  String id = (String)request.getParameter("id");
+ String gameID = request.getParameter("gameID");
+ String levelID = request.getParameter("levelID");
  
  System.out.println("subGameList.jsp Beginning");
  
@@ -47,10 +49,19 @@
 
 <div id="menu">
 	<table id="contextmenu" cellpadding="5" cellspacing="0">
-		<tr class="nongame"><td><a class='menu'  href="subGameList.jsp?id=<%= id %>" onclick="">&nbsp;&nbsp;New Game</a></td></tr>
-		<tr class="gamemenu"><td><a class='menu'  href="subGameList.jsp?id=<%= id %>" onclick="">&nbsp;&nbsp;Play&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td></tr>
-		<tr class="gamemenu"><td><a class='menu'  href="javascript:void(0)" onclick=""">&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td></tr>
-		<tr class="gamemenu"><td><hr class='menu'><a class='menu' href='javascript:void(0)'>&nbsp;&nbsp;Delete</a></td></tr>
+		<tr class="nongame"><td><a class='menu'  href="GameEditor?id=<%= id %>" onclick="">&nbsp;&nbsp;New Subgame</a></td></tr>
+		<tr class="nongame"><td><a class='menu'  href="#" onclick="">&nbsp;&nbsp;New Level</a></td></tr>
+		<tr class="gamemenu"><td><a class='menu'  href="javascript:void(0)" onclick="playgame();">&nbsp;&nbsp;Play&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td></tr>
+		<tr class="gamemenu"><td><a class='menu'  href="javascript:void(0)" onclick="">&nbsp;&nbsp;Edit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td></tr>
+		<tr class="gamemenu"><td><hr class='menu'>
+				<form name="deleteGame">
+					<input id="gameDeletionId" name="gameDeletionId" type="hidden"/>
+					<input type="hidden" id="useridhidden" name="id" value="<%= id %>">
+					<input type="hidden" id="gameID" name="gameID" value="<%= gameID %>">
+					<input type="hidden" id="levelID" name="levelID" value="<%= levelID %>">
+					<input id="action" name="action" type="hidden" value="delete" />
+					<a class="menu" href="javascript:void(0)" onclick="deleteGame.submit();">&nbsp;&nbsp;Delete</a>
+				</form></td>
 		<tr><td><hr class='menu'><a class="menu" href="javascript:void(0)" onclick="document.getElementById('giveFeedback').style.display = 'inline';">&nbsp;&nbsp;Give Feedback&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></td></tr>
 	</table>
 </div>
@@ -145,15 +156,15 @@
            
         <%
         	for (int i = 1; i <= subgames.size(); i++) {
-	        	%>
-	        	<form method="post">
-	        	<li>
+	        	%>	        	
+        	<li>
+	        	<form name="game<%=i %>" method="post">
 		          <h2>Subgame <%=i %></h2>
-		          <input type="image" name="game" src="img/game_btn.png" alt="Submit Form" />
+		          <input type="image" id ="<%=subgames.get(i-1).getSubgameID() %>" name="game" src="img/game_btn.png" alt="Submit Form" />
 		          <p> </p>
-		        </li>
 		        <input type="hidden" name="subGameID" value="<%=subgames.get(i-1).getSubgameID() %>">
 		        </form>
+		    </li>
 		        <%
 	    	}
 		 %>

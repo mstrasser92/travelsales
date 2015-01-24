@@ -54,8 +54,9 @@ $(function() {
 		    	clickedongame = 1;
 		    	$('.gamemenu').css('display', 'inline');
 		    	$('.nongame').css('display', 'none');
-		    	document.getElementById("gamename").value= this.title;
-		    	document.getElementById("gameDeletionId").value= this.title;
+		    	document.getElementById("gameDeletionId").value= this.id;
+		    	document.getElementById("gameName").value= this.title;
+		    	document.getElementById("gameId").value= this.id;
 	    	} else {
 	    		$('.gamemenu').css('display', 'none');
 	    		$('.nongame').css('display', 'inline');
@@ -71,12 +72,8 @@ $(function() {
 		});		
 });
 
-// Quelltext anzeigen
-function viewSource() {
-	var w=window.open("view-source:"+window.location,'','resizable=1,scrollbars=1');
-}
-
-// Seite in neuem Fenster �ffnen
-function openFrameInNewWindow() {
-	var w=window.open(window.location,'','resizable=1,scrollbars=1,status=1,location=1,menubar=1,toolbar=1');
+function playgame() {
+	var id = document.getElementById("gameId").value;
+	var name = "game"+id;
+	document.forms[name].submit();
 }

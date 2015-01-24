@@ -151,7 +151,7 @@ div.overlay
 	z-index:100;
 }
 
-input#gamename 
+input#gameName 
 {
 	width: 70%;
 	background:transparent;

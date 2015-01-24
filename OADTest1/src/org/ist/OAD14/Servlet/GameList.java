@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.Session;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 import org.ist.OAD14.Game.*;
@@ -38,9 +37,50 @@ public class GameList extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		System.out.println("GameList Beginning");
-		
 		String userId = request.getParameter("id");
 		User current_user = HibernateSupport.readOneObjectByID(User.class, Integer.parseInt(userId));
+		
+		String action = "";
+		if(request.getParameter("action") != null)
+		{
+			action = request.getParameter("action");
+		}
+		
+		if(action.equals("preferences"))
+		{
+			System.out.println("Found argument preferences");
+			int gameId = Integer.parseInt(request.getParameter("gameId"));			
+			Game gameToUpdate = HibernateSupport.readOneObjectByID(Game.class, gameId);
+			gameToUpdate.setName(request.getParameter("gameName"));
+			
+			System.out.println("Got game set up to save with params: " + String.valueOf(gameId) + " name:" + request.getParameter("gameName"));
+			HibernateSupport.beginTransaction();
+				gameToUpdate.saveToDB();
+			HibernateSupport.commitTransaction();
+		}
+		
+		if(action.equals("delete"))
+		{
+			System.out.println("Found argument delete");
+			int gameDeletionId = Integer.parseInt(request.getParameter("gameDeletionId"));
+			Game gameToDelete = HibernateSupport.readOneObjectByID(Game.class, gameDeletionId);
+			HibernateSupport.beginTransaction();
+				gameToDelete.deleteFromDB();
+			HibernateSupport.commitTransaction();
+			System.out.println("Game deleted");
+		}
+		
+		if(action.equals("newGame"))
+		{
+			System.out.println("Found argument newGame");
+			Game newGame = new Game("Your new Game", current_user, "public");
+			HibernateSupport.beginTransaction();
+				newGame.saveToDB();
+			HibernateSupport.commitTransaction();
+			System.out.println("Game created");
+		}
+
+		
 		
 		
 		//DEBUG
@@ -97,9 +137,8 @@ public class GameList extends HttpServlet {
 		System.out.println("GameList doPost Beginning");
 		String currentGameID = request.getParameter("gameID");
 		String userId = request.getParameter("id");
-		//String levelID = "0";
-		response.sendRedirect("SubGameList?id="+userId+"&gameID="+ currentGameID+"&levelID=-1");
-
+		String levelID = "1";
+		response.sendRedirect("SubGameList?id="+userId+"&gameID="+ currentGameID+"&levelID="+levelID);
 		System.out.println("GameList doPost End");
 		
 	}
