@@ -2,6 +2,7 @@ package org.ist.OAD14.Servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -39,13 +40,11 @@ public class SubGameList extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("SubGameList entered");
-		
 		System.out.println("SubGameList doGet Beginning");
-
+		
 		System.out.println("Use parameter id to get current_user from DB");
 		String userID = request.getParameter("id");
-		User current_user = HibernateSupport.readOneObjectByID(User.class, Integer.parseInt(userID));
+		//User current_user = HibernateSupport.readOneObjectByID(User.class, Integer.parseInt(userID));
 		
 		System.out.println("Use parameter gameID to get current_game from DB");
 		String gameID = request.getParameter("gameID");
@@ -53,7 +52,18 @@ public class SubGameList extends HttpServlet {
 	
 		System.out.println("userID: " + userID);
 		System.out.println("gameID: " + gameID);
+		Boolean sameLevel = false;
 		
+		System.out.println("Checking for visibility changes");
+		String newVisibility = request.getParameter("setVisibility");
+		if(newVisibility != null) {
+			Game game = HibernateSupport.readOneObjectByID(Game.class, Integer.parseInt(gameID));
+			game.setVisibility(newVisibility);
+			HibernateSupport.beginTransaction();
+				game.saveToDB();
+			HibernateSupport.commitTransaction();
+			System.out.println("Game visibility changed to " + newVisibility);
+		}
 		
 		// get all levels of current game
 		System.out.println("Read levels from DB into \"levels\" object");
@@ -80,6 +90,40 @@ public class SubGameList extends HttpServlet {
 			HibernateSupport.commitTransaction();
 			System.out.println("Game deleted");
 		}
+		if(action.equals("addLevel"))
+		{
+			System.out.println("Found argument addLevel");
+			if(levels.isEmpty())
+				sameLevel = true;
+			Level newLevel = new Level();
+			newLevel.setGameID(current_game.getGameID());
+			current_game.addLevel(newLevel);
+			HibernateSupport.beginTransaction();
+			newLevel.saveToDB();
+			current_game.saveToDB();
+			HibernateSupport.commitTransaction();
+			System.out.println("Level added");
+			levels = HibernateSupport.readMoreObjects(Level.class, criterions);
+		}
+		if(action.equals("deleteLevel"))
+		{
+			System.out.println("Found argument deleteLevel");
+			int levelDeletionId = Integer.parseInt(request.getParameter("levelDeletionId"));
+			System.out.println("ID for Deletion is: "+String.valueOf(levelDeletionId));
+			Level levelToDelete = HibernateSupport.readOneObjectByID(Level.class, levelDeletionId);
+			current_game.deleteLevel(levelToDelete);
+			System.out.println(levels.get(0).toString());
+			HibernateSupport.beginTransaction();
+				levelToDelete.deleteFromDB();
+				current_game.saveToDB();
+			HibernateSupport.commitTransaction();
+			
+			if(levelDeletionId == Integer.parseInt(request.getParameter("levelID")))
+				sameLevel=true;
+
+			System.out.println("Level deleted");
+			levels = HibernateSupport.readMoreObjects(Level.class, criterions);
+		}
 		
 		// DEBUG
 		if (levels != null)
@@ -87,6 +131,7 @@ public class SubGameList extends HttpServlet {
 			System.out.println("levels.size(): " + levels.size());
 			for (int i = 0; i < levels.size(); i++) {
 				System.out.println("GameID of level " + i + ": " + levels.get(i).getGameID());
+				System.out.println("GameID of level " + i + ": " + levels.get(i).getLevelID());
 			}
 		}
 		else
@@ -99,6 +144,9 @@ public class SubGameList extends HttpServlet {
 		// find current level so we know which subgames we should display
 		
 		String levelID = request.getParameter("levelID");
+		
+		if(sameLevel)
+			levelID = "-1";
 		Level current_level = new Level();
 		
 		if (levels.size() != 0){
@@ -178,11 +226,19 @@ public class SubGameList extends HttpServlet {
 		String currentGameID = request.getParameter("gameID");
 		String currentLevelID = request.getParameter("levelID");
 		String userID = request.getParameter("id");
+		String setVisibility = request.getParameter("setVisibility");
 		
 		System.out.println("SubGameList doPost currentGameID: " + currentGameID);
 		System.out.println("SubGameList doPost currentLevelID: " + currentLevelID);
 		System.out.println("SubGameList doPost userID: " + userID);
+		System.out.println("SubGameList doPost setVisibility: " + setVisibility);
+		
+		if(setVisibility != null) {
+			response.sendRedirect("SubGameList?id="+userID+"&gameID="+ currentGameID+"&levelID="+currentLevelID+"&setVisibility="+setVisibility);
+		}
+		else {
+			response.sendRedirect("SubGameList?id="+userID+"&gameID="+ currentGameID+"&levelID="+currentLevelID);
+		}
 
-		response.sendRedirect("SubGameList?id="+userID+"&gameID="+ currentGameID+"&levelID="+currentLevelID);
 	}
 }

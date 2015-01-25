@@ -9,6 +9,7 @@
  User user = (User)request.getAttribute("user");
  String errorMessage = (String)request.getAttribute("errorMessage");
  List<Game> games = (List<Game>)request.getAttribute("visible_games");
+ String path = (String)request.getAttribute("path");
  
  String id = (String)request.getParameter("id");
  String fbsent = "none";
@@ -58,8 +59,6 @@
 			</tr>
 			<tr><td><hr class='menu'><a class="menu" href="javascript:void(0)" onclick="document.getElementById('giveFeedback').style.display = 'inline';">&nbsp;&nbsp;Give Feedback</a></td></tr>
 			
-			<!-- TODO: identify gameID of game that you right clicked on -- this will then be submitted to the doPost function of GameList.java-->
-	    	<!--   <input type="hidden" name="gameID" value="<% // games.get(0).getGameID()%>"> -->
 	    	
 	    
 		</table>
@@ -84,26 +83,32 @@
 <div id="gamePreferences" class="overlay">
 	<h2>Preferences</h2>
 	<br>
-	<form name="gamePreferences">
+	<form name="gamePreferences" >
 		<input type="hidden" name="action" value="preferences"> 
 		<input type="hidden" id="useridhidden" name="id" value="<%= id %>">
 		<input type="hidden" id="gameId" name="gameId" value="-1">
 		<div>Name:&nbsp;<input type="text" id="gameName" name="gameName"></div>
-	   	<div>Logo:
-	   	<a href="javascript:void(0)" onclick="clicked=0;">
-	   		<img style="align: left;margin-top: 10px; margin-left: 10px" src="img/select_btn.png" alt="Select" height="29" width="171"/></a>
-	   	<img style="position:absolute; margin-left:60px;" src="img/bg_placeholder.png" alt="Logo" height="100" width="100"/></a>
-	   	<br>
-	   	<a href="javascript:void(0)" onclick="document.getElementById('gamePreferences').style.display = 'none'; clicked=0;">
-			<img style="margin-top: 0px; margin-left: 81px;" src="img/upload_btn.png" alt="Upload" height="29" width="171"/></a>
-  			
-		</div>
 		<div align="center">
-		<a href="javascript:void(0)" style="align: center;"onclick="gamePreferences.submit();">
-  			<br>
-  			<img style="margin-right: 80px;"src="img/save_btn_small.png" alt="Save" height="29" width="171"/></a>
+		<a href="javascript:void(0)" style="align: center;"onclick="gamePreferences.submit(); document.getElementById('gamePreferences').style.display = 'none'; clicked=0;">
+  			<img style="margin-right: 10px;"src="img/save_btn_small.png" alt="Save" height="29" width="171"/></a>
+     	<a href="javascript:void(0)" onclick="document.getElementById('gamePreferences').style.display = 'none'; clicked=0;">
+			<img style="margin-top: 10px; margin-left: 10px;" src="img/back_btn_small.png" alt="Back" height="29" width="171"/></a>
+ 
    		</div>
 	</form>
+	<br>
+	<br>
+	<div><p>Logo:</p>
+		<form name="logoUpload" action="GameList" method="post" enctype="multipart/form-data">
+
+			<input type="hidden" name="action" value="logoUpload"> 
+			<input type="hidden" id="userIDLogo" name="id" value="<%= id%>">
+			<input type="hidden" id="gameIdLogo" name="gameId" value="1">
+		   	<input type="file" name="uploadedFile">
+     	    <input type="submit" value="Upload">
+		
+		</form>
+	</div>
 </div>
 
 <div id="feedbackSent" class="overlay">
@@ -171,9 +176,10 @@
         	<li>
         		<form name="game<%=games.get(i).getGameID()%>" method="post">
 		          <h2><%=games.get(i).getName() %></h2>
-		          <input id="<%=games.get(i).getGameID()%>" type="image" title="<%=games.get(i).getName() %>" name="game" src="img/game_btn.png" alt="Submit Form" />
+		          <input id="<%=games.get(i).getGameID()%>" type="image" title="<%=games.get(i).getName() %>" name="game" width="100px" height="100px" src="./uploads/<%=games.get(i).getLogo() %>" alt="Submit Form" />
 		          <p>From <%=games.get(0).getAuthor().getUsername() %></p>
-		          <input type="hidden" name="gameID" value="<%=games.get(i).getGameID()%>">
+		          <input type="hidden" id="gameID" name="gameID" value="<%=games.get(i).getGameID()%>">
+		          <input type="hidden" id="userID" name="id" value="<%= id %>">
 		        </form>
 	        </li>     
 		        <%

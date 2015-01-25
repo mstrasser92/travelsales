@@ -35,9 +35,10 @@ public class Game implements ISaveAndDelete, Serializable {
 	@ManyToOne
 	private User author;
 
-	
 	private String name;
 	private String visibility;
+	private String logo;
+	
 
 
 	//private Evaluation evaluation;
@@ -56,6 +57,15 @@ public class Game implements ISaveAndDelete, Serializable {
 		this.name = name;
 		this.author = author;
 		this.visibility = visibility;
+		this.logo = "standard.png";
+		this.levels = new ArrayList<Level>();
+	}
+	
+	public Game(String name, User author, String visibility, String logo) {
+		this.name = name;
+		this.author = author;
+		this.visibility = visibility;
+		this.logo = logo;
 		this.levels = new ArrayList<Level>();
 	}
 	
@@ -90,6 +100,10 @@ public class Game implements ISaveAndDelete, Serializable {
 	
 	public void deleteLevel(Level lvl){
 		levels.remove(lvl);
+		int i = 0;
+		while(levels.get(i).getLevelID()!= lvl.getLevelID())
+			i++;
+		levels.remove(i);
 	}
 	
 	public ArrayList<Level> getLevels() {
@@ -110,6 +124,14 @@ public class Game implements ISaveAndDelete, Serializable {
 
 	public void setAuthor(User author) {
 		this.author = author;
+	}
+	
+	public String getLogo() {
+		return logo;
+	}
+
+	public void setLogo(String logo) {
+		this.logo = logo;
 	}
 
 	@Override
