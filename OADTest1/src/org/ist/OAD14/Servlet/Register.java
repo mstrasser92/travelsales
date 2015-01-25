@@ -71,7 +71,7 @@ public class Register extends HttpServlet {
 		HibernateSupport.commitTransaction();
 		
 		System.out.println("Send redirect from REGSITER to HOME");
-		response.sendRedirect("Home?id="+user.getUserID());
+		response.sendRedirect("GameList?id="+user.getUserID());
 		return;		
 	}
 

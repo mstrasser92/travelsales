@@ -136,6 +136,12 @@ tr.gamemenu
 	width: 100%;
 }
 
+tr.levelmenu
+{
+	display: none;
+	width: 100%;
+}
+
 div.overlay
 {
   	background: url("../img/preferences_field.png") no-repeat;
@@ -151,7 +157,7 @@ div.overlay
 	z-index:100;
 }
 
-input#gamename 
+input#gameName 
 {
 	width: 70%;
 	background:transparent;
@@ -445,6 +451,12 @@ span a {
 	background-position: 0px -12px;
 	height: 62px;
 	width: 62px;
+	color: white;
+}
+
+.visibility ul li {
+	position: absolute;
+  margin-left: 850px;
 }
 
 

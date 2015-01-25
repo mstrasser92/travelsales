@@ -33,19 +33,27 @@ public class TestDB {
 		Node node5 = new Node(56,55);
 		Node node6 = new Node(67,65);
 		
-		Game game1 = new Game("Game 1", userB, "public");
-		Game game2 = new Game("Game 2", userB, "public");
-		Game game3 = new Game("Game 3", userB, "public");
-		Game game4 = new Game("Game 4", userB, "public");
-		Game game5 = new Game("Game 5", userB, "public");
+		Game game1 = new Game("Game 1", userB, "public", "standard.png");
+		Game game2 = new Game("Game 2", userB, "public", "standard.png");
+		Game game3 = new Game("Game 3", userB, "public", "standard.png");
+		Game game4 = new Game("Game 4", userB, "public", "standard.png");
+		Game game5 = new Game("Game 5", userB, "public", "standard.png");
 		
 		Level level1 = new Level();
 		Level level2 = new Level();
 		Level level3 = new Level();
+		Level level4 = new Level();
+		Level level5 = new Level();
 		
 		Subgame subgame1 = new Subgame();
 		Subgame subgame2 = new Subgame();
 		Subgame subgame3 = new Subgame();
+		Subgame subgame4 = new Subgame();
+		Subgame subgame5 = new Subgame();
+		Subgame subgame6 = new Subgame();
+		Subgame subgame7 = new Subgame();
+		Subgame subgame8 = new Subgame();
+		Subgame subgame9 = new Subgame();
 		
 		subgame1.addNode(node4);
 		subgame1.addNode(node1);
@@ -61,11 +69,19 @@ public class TestDB {
 		//level2.addSubgame(subgame1);
 		level1.addSubgame(subgame2);
 		level1.addSubgame(subgame3);
+		level2.addSubgame(subgame4);
+		level3.addSubgame(subgame5);
+		level3.addSubgame(subgame6);
+		level4.addSubgame(subgame7);
+		level4.addSubgame(subgame8);
+		level5.addSubgame(subgame9);
 		
 		//game1.addLevel(level3);
 		game1.addLevel(level1);
 		game1.addLevel(level2);
 		game1.addLevel(level3);
+		game2.addLevel(level4);
+		game2.addLevel(level5);
 		
 		HibernateSupport.beginTransaction();
 		game1.saveToDB();
@@ -73,27 +89,43 @@ public class TestDB {
 		game3.saveToDB();
 		game4.saveToDB();
 		game5.saveToDB();
-		HibernateSupport.commitTransaction();
+//		HibernateSupport.commitTransaction();
 	
 		level1.setGameID(game1.getGameID()); // because 		game1.addLevel(level1);
 		level2.setGameID(game1.getGameID()); // etc.
 		level3.setGameID(game1.getGameID()); 
+		level4.setGameID(game2.getGameID());
+		level5.setGameID(game2.getGameID());
 		
-		HibernateSupport.beginTransaction();
+//		HibernateSupport.beginTransaction();
 		level1.saveToDB();
 		level2.saveToDB();
 		level3.saveToDB();
-		HibernateSupport.commitTransaction();
+		level4.saveToDB();
+		level5.saveToDB();
+//		HibernateSupport.commitTransaction();
 		
 		subgame1.setLevelID(level1.getLevelID()); // because 		level1.addSubgame(subgame1);
 		subgame2.setLevelID(level1.getLevelID()); // etc.
 		subgame3.setLevelID(level1.getLevelID()); 
-		
-		HibernateSupport.beginTransaction();
+		subgame4.setLevelID(level2.getLevelID()); 
+		subgame5.setLevelID(level3.getLevelID()); 
+		subgame6.setLevelID(level3.getLevelID());
+		subgame7.setLevelID(level4.getLevelID());
+		subgame8.setLevelID(level4.getLevelID());
+		subgame9.setLevelID(level5.getLevelID());
+			
+//		HibernateSupport.beginTransaction();
 		subgame1.saveToDB();
 		subgame2.saveToDB();
 		subgame3.saveToDB();
-		HibernateSupport.commitTransaction();
+		subgame4.saveToDB();
+		subgame5.saveToDB();
+		subgame6.saveToDB();
+		subgame7.saveToDB();
+		subgame8.saveToDB();
+		subgame9.saveToDB();
+//		HibernateSupport.commitTransaction();
 
 		node1.setSubgameID(subgame1.getSubgameID());
 		node2.setSubgameID(subgame2.getSubgameID());
@@ -102,7 +134,7 @@ public class TestDB {
 		node5.setSubgameID(subgame3.getSubgameID());
 		node6.setSubgameID(subgame1.getSubgameID());
 		
-		HibernateSupport.beginTransaction();
+//		HibernateSupport.beginTransaction();
 		node1.saveToDB();
 		node2.saveToDB();
 		node3.saveToDB();

@@ -47,8 +47,8 @@
             </a>
           </li>
           <li>
-            <a href="#" title="Logout">
-              <img src="img/logout_btn.png" alt="Help" />
+            <a href="Login" title="Logout">
+              <img src="img/logout_btn.png" alt="Logout" />
             </a>
           </li>
         </ul>
