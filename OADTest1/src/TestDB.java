@@ -33,11 +33,11 @@ public class TestDB {
 		Node node5 = new Node(56,55);
 		Node node6 = new Node(67,65);
 		
-		Game game1 = new Game("Game 1", userB, "public");
-		Game game2 = new Game("Game 2", userB, "public");
-		Game game3 = new Game("Game 3", userB, "public");
-		Game game4 = new Game("Game 4", userB, "public");
-		Game game5 = new Game("Game 5", userB, "public");
+		Game game1 = new Game("Game 1", userB, "public", "standard.png");
+		Game game2 = new Game("Game 2", userB, "public", "standard.png");
+		Game game3 = new Game("Game 3", userB, "public", "standard.png");
+		Game game4 = new Game("Game 4", userB, "public", "standard.png");
+		Game game5 = new Game("Game 5", userB, "public", "standard.png");
 		
 		Level level1 = new Level();
 		Level level2 = new Level();

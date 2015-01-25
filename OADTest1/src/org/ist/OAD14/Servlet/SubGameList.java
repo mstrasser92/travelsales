@@ -43,7 +43,7 @@ public class SubGameList extends HttpServlet {
 		
 		System.out.println("Use parameter id to get current_user from DB");
 		String userID = request.getParameter("id");
-		User current_user = HibernateSupport.readOneObjectByID(User.class, Integer.parseInt(userID));
+		//User current_user = HibernateSupport.readOneObjectByID(User.class, Integer.parseInt(userID));
 		
 		System.out.println("Use parameter gameID to get current_game from DB");
 		String gameID = request.getParameter("gameID");

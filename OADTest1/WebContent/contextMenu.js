@@ -59,6 +59,7 @@ $(function() {
 		    	document.getElementById("gameDeletionId").value= this.id;
 		    	document.getElementById("gameName").value= this.title;
 		    	document.getElementById("gameId").value= this.id;
+		    	document.getElementById("gameIdLogo").value= this.id;
 	    	} else {
 	    		$('.gamemenu').css('display', 'none');
 	    		$('.levelmenu').css('display', 'none');
@@ -97,3 +98,5 @@ function playgame() {
 	var name = "game"+id;
 	document.forms[name].submit();
 }
+
+
