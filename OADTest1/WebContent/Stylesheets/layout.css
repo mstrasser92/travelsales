@@ -455,7 +455,8 @@ span a {
 }
 
 .visibility ul li {
-  margin-left: 35px;
+	position: absolute;
+  margin-left: 850px;
 }
 
 
